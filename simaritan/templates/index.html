@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ title }}!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  </head>
+  <body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h3>
+						Hello, world!
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+				<h3>
+					Options
+				</h3>
+				<hr />
+				<ul class="list-unstyled">
+					<li class="list-item">
+						Lorem ipsum dolor sit amet
+					</li>
+					<li class="list-item">
+						Consectetur adipiscing elit
+					</li>
+					<li class="list-item">
+						Integer molestie lorem at massa
+					</li>
+					<li class="list-item">
+						Facilisis in pretium nisl aliquet
+					</li>
+					<li class="list-item">
+						Nulla volutpat aliquam velit
+					</li>
+					<li class="list-item">
+						Faucibus porta lacus fringilla vel
+					</li>
+					<li class="list-item">
+						Aenean sit amet erat nunc
+					</li>
+					<li class="list-item">
+						Eget porttitor lorem
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-11">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="alert alert-success alert-dismissable">
+							<h4>
+								Alert!
+							</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="alert alert-success alert-dismissable">
+							<h4>
+								Alert!
+							</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="alert alert-success alert-dismissable">
+							<h4>
+								Alert!
+							</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<h3 class="text-left text-muted">
+							Timeline of events
+						</h3>
+						<hr />
+						<ul class="timeline">
+							<!--Timeline is from https://bootsnipp.com/snippets/xrKXW-->
+							<li>
+								<strong>New Web Design</strong>
+								<p class="float-right">21 March, 2014</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
+							</li>
+							<li>
+								<strong>21 000 Job Seekers</strong>
+								<p class="float-right">4 March, 2014</p>
+								<p>Curabitur purus sem, malesuada eu luctus eget, suscipit sed turpis. Nam pellentesque felis vitae justo accumsan, sed semper nisi sollicitudin...</p>
+							</li>
+							<li>
+								<strong>{.{Person / team}.}</strong>
+								<p class="float-right">{.{ Time stamp}.}</p>
+								<p>{.{Description of event}.}</p>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h3>
+							Action tracker
+						</h3>
+						<hr />
+						<table class="table table-striped table-hover table-sm">
+							<thead>
+								<tr>
+									<th>
+										#
+									</th>
+									<th>
+										Action
+									</th>
+									<th>
+										Owner
+									</th>
+									<th>
+										Status / ETA
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										1
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										01/04/2012
+									</td>
+									<td>
+										Default
+									</td>
+								</tr>
+								<tr class="table-active">
+									<td>
+										1
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										01/04/2012
+									</td>
+									<td>
+										Approved
+									</td>
+								</tr>
+								<tr class="table-success">
+									<td>
+										2
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										02/04/2012
+									</td>
+									<td>
+										Declined
+									</td>
+								</tr>
+								<tr class="table-warning">
+									<td>
+										3
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										03/04/2012
+									</td>
+									<td>
+										Pending
+									</td>
+								</tr>
+								<tr class="table-danger">
+									<td>
+										4
+									</td>
+									<td>
+										TB - Monthly
+									</td>
+									<td>
+										04/04/2012
+									</td>
+									<td>
+										Call in to confirm
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<form role="form">
+							<div class="form-group">
+								 
+								<label for="exampleInputEmail1">
+									Add actions
+								</label>
+								<input type="Task" value="Action name" class="form-control" id="task_name" />
+								
+							</div>
+							<div class="form-group">
+								<input type="text" value="Owner" class="form-control" id="task_owner" />
+								
+							<!--</div>
+							<div class="form-group">	-->							 
+								<label for="exampleInputFile">
+									ETA
+								</label>
+								<input type="time" id="inputMDEx1" class="form-control" id="eta" />
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" id="isComplete" /> Already completed ?
+								</label>
+							</div> 
+							<button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+						</form>
+					</div>
+					<div class="col-md-4">
+						<h3 class="text-left text-muted">
+							Details
+						</h3>
+						<hr />
+						<dl>
+							<dt>
+								Description lists
+							</dt>
+							<dd>
+								A description list is perfect for defining terms.
+							</dd>
+							<dt>
+								Euismod
+							</dt>
+							<dd>
+								Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+							</dd>
+							<dd>
+								Donec id elit non mi porta gravida at eget metus.
+							</dd>
+						</dl>
+						<div class="list-group">
+							 <strong href="#" class="list-group-item list-group-item-action active">Incident Team</strong>
+							 <div class="list-group-item justify-content-between">
+								Ziva Comfykat <span class="">Incident manager</span>
+							</div>
+							<div class="list-group-item justify-content-between">
+								Ellie Waggerson <span class="">The sniffing squad</span>
+							</div>
+							<div class="list-group-item justify-content-between">
+								Blackie Purrfarter <span class="">"We like milk"</span>
+							</div>
+							<div class="list-group-item justify-content-between">
+								{.{ for each attendee: Name}.} <span class="">{.{Group name / team}.}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  </body>
+</html>

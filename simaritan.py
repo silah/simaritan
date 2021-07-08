@@ -1,0 +1,1 @@
+from simaritan import app
