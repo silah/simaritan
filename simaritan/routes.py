@@ -22,12 +22,12 @@ def index():
                 'statement': 'Main website is not available'
             },
             {
-                'submitter': 'Ellie',
+                'submitter': 'Ellie the Dog',
                 'statement': 'The dog food stock is running dangerously low and it may impact supply chain for items such as'
                              'tail wags, drool and dog-kisses'
             },
             {
-                'submitter': 'Ziva',
+                'submitter': 'Ziva the Cat',
                 'statement': 'Meow Meow meow Meeoow Meow Maaaoooww Meow Meeoow milk milk milk!!!'
             }
         ]
