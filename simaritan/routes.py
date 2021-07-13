@@ -4,12 +4,17 @@ from flask import render_template
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+
+@app.route('/dashboard')
+def dashboard():
     user = {'username': 'Silas'}
     tasks = [
         {'id': 1, 'activity': 'Feed animals', 'owner': 'Silas', 'eta': '15:00', 'status': 'Complete'},
         {'id': 2, 'activity': 'Guard Ziva', 'owner': 'Silas', 'eta': '13:40', 'status': 'Ongoing'},
         {'id': 3, 'activity': 'Eat Food', 'owner': 'Ellie', 'eta': '15:00', 'status': 'Complete'},
-        {'id': 4, 'activity': 'Watch Out for food thieves', 'owner': 'Ziva', 'eta': '15:00',  'status': 'Ongoing'},
+        {'id': 4, 'activity': 'Watch Out for food thieves', 'owner': 'Ziva', 'eta': '15:00', 'status': 'Ongoing'},
         {'id': 5, 'activity': 'Munch down chow', 'owner': 'Blackie', 'eta': '15:00', 'status': 'Complete'},
         {'id': 6, 'activity': 'Try to steal food', 'owner': 'Blackie', 'eta': '15:00', 'status': 'Ongoing'},
     ]
@@ -50,4 +55,4 @@ def index():
             'team': 'Hooman servant'
         }
     ]
-    return render_template('index2.html', title='Simaritan', user=user, tasks=tasks, details=details, team=team)
+    return render_template('dashboard.html', title='Simaritan', user=user, tasks=tasks, details=details, team=team)
