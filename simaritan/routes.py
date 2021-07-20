@@ -11,25 +11,32 @@ def index():
 def dashboard():
     user = {'username': 'Silas'}
     tasks = [
-        {'id': 1, 'activity': 'Feed animals', 'owner': 'Silas', 'eta': '15:00', 'status': 'Complete'},
-        {'id': 2, 'activity': 'Guard Ziva', 'owner': 'Silas', 'eta': '13:40', 'status': 'Ongoing'},
-        {'id': 3, 'activity': 'Eat Food', 'owner': 'Ellie', 'eta': '15:00', 'status': 'Complete'},
-        {'id': 4, 'activity': 'Watch Out for food thieves', 'owner': 'Ziva', 'eta': '15:00', 'status': 'Ongoing'},
-        {'id': 5, 'activity': 'Munch down chow', 'owner': 'Blackie', 'eta': '15:00', 'status': 'Complete'},
-        {'id': 6, 'activity': 'Try to steal food', 'owner': 'Blackie', 'eta': '15:00', 'status': 'Ongoing'},
+        {'id': 1, 'activity': 'Send Business Comms', 'owner': 'Silas', 'eta': '15:30', 'status': 'Complete'},
+        {'id': 2, 'activity': 'Untangle Cables', 'owner': 'Ziva', 'eta': '13:40', 'status': 'Ongoing'},
+        {'id': 3, 'activity': 'Plug cables back in', 'owner': 'Ziva', 'eta': '15:30', 'status': 'Ongoing'},
+        {'id': 5, 'activity': 'Gather Impact Statements', 'owner': 'Simon', 'eta': '15:00', 'status': 'Complete'},
+        {'id': 6, 'activity': 'Inform business owners', 'owner': 'Silas', 'eta': '15:00', 'status': 'Ongoing'},
+    ]
+    timeline = [
+        {'id': 1, 'activity': 'Task completed: "Untangle cables"', 'owner': 'Ziva the Cat', 'eta': '15:15', 'type': 'Task completed'},
+        {'id': 2, 'activity': 'Server Team joined call', 'owner': 'Ellie', 'eta': '15:10', 'type':'Call update'},
+        {'id': 3, 'activity': 'Call centre impact added', 'owner': 'Simon', 'eta': '15:00', 'type': 'Impact clarification'},
+        {'id': 4, 'activity': 'Business Stakeholder joined call', 'owner': 'Simon', 'eta': '15:00', 'type':'Call update'},
+        {'id': 5, 'activity': 'Incident bridge initiated: Conference code 1234', 'owner': 'Silas', 'eta': '14:45', 'type':'Call update'},
+        {'id': 6, 'activity': 'Incident Started', 'owner': 'Silas', 'eta': '14:34', 'type':'Call update'}
+
     ]
     details = {
         'incidentid': 'INC001276354',
         'description': 'Nigel stumbled over a bunch of cables in the Data center and a whole rack of servers fell over',
         'impact_statements': [
             {
-                'submitter': 'Silas',
+                'submitter': 'Silas - Incident Management Muppet',
                 'statement': 'Main website is not available'
             },
             {
-                'submitter': 'Ellie the Dog',
-                'statement': 'The dog food stock is running dangerously low and it may impact supply chain for items such as'
-                             'tail wags, drool and dog-kisses'
+                'submitter': 'Simon the Business Stakeholder',
+                'statement': 'Call centre is getting calls from customers saying they cannot log into shopping basket'
             },
             {
                 'submitter': 'Ziva the Cat',
@@ -39,20 +46,20 @@ def dashboard():
     }
     team = [
         {
-            'name': 'Ziva Komfykat',
+            'name': 'Silas Wulff Hansen',
             'team': 'Incident Manager'
         },
         {
-            'name': 'Ellie Wag Bishop',
+            'name': 'Ellie Bishop',
             'team': 'Sniffing Squad'
         },
         {
-            'name': 'Blackie Milkywhisker',
-            'team': 'Dairy and Produce'
+            'name': 'John Silver',
+            'team': 'The Pirate Crew'
         },
         {
-            'name': 'Silas the Muppet',
-            'team': 'Hooman servant'
+            'name': 'Simon Longbottom',
+            'team': 'Customer Call Centre'
         }
     ]
-    return render_template('dashboard.html', title='Simaritan', user=user, tasks=tasks, details=details, team=team)
+    return render_template('dashboard.html', title='Simaritan', user=user, tasks=tasks, details=details, team=team, timeline=timeline)

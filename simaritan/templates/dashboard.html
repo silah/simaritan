@@ -26,59 +26,42 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-1">
+			<!--<div class="col-md-1">
 				<h3>
 					Options
 				</h3>
 				<hr />
 				<ul class="list-unstyled">
 					<li class="list-item">
-						Lorem ipsum dolor sit amet
+						This is a column
 					</li>
 					<li class="list-item">
-						Consectetur adipiscing elit
+						Not sure what this column can be used for
 					</li>
-					<li class="list-item">
-						Integer molestie lorem at massa
-					</li>
-					<li class="list-item">
-						Facilisis in pretium nisl aliquet
-					</li>
-					<li class="list-item">
-						Nulla volutpat aliquam velit
-					</li>
-					<li class="list-item">
-						Faucibus porta lacus fringilla vel
-					</li>
-					<li class="list-item">
-						Aenean sit amet erat nunc
-					</li>
-					<li class="list-item">
-						Eget porttitor lorem
-					</li>
+
 				</ul>
-			</div>
-			<div class="col-md-11">
+			</div> -->
+			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-4">
 						<div class="alert alert-success alert-dismissable">
 							<h4>
-								Alert!
-							</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+								{{details.incidentid}}
+							</h4> {{details.description}}
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="alert alert-success alert-dismissable">
 							<h4>
-								Alert!
-							</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+								Next Business Comms
+							</h4> <strong>Due at:</strong> 15:30
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="alert alert-success alert-dismissable">
 							<h4>
-								Alert!
-							</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+								Status
+							</h4> <strong>Warning!</strong> Its still broken!
 						</div>
 					</div>
 				</div>
@@ -90,6 +73,13 @@
 						<hr />
 						<ul class="timeline">
 							<!--Timeline is from https://bootsnipp.com/snippets/xrKXW-->
+							{% for tl in timeline %}
+							<li>
+								<strong>{{ tl.type }}</strong>
+								<p class="float-right">{{tl.eta}}</p>
+								<p>{{ tl.owner }}: {{ tl.activity }}</p>
+							</li>
+							{% endfor %}<!--
 							<li>
 								<strong>New Web Design</strong>
 								<p class="float-right">21 March, 2014</p>
@@ -104,7 +94,7 @@
 								<strong>{.{Person / team}.}</strong>
 								<p class="float-right">{.{ Time stamp}.}</p>
 								<p>{.{Description of event}.}</p>
-							</li>
+							</li>-->
 						</ul>
 					</div>
 					<div class="col-md-4">
@@ -156,7 +146,7 @@
     							{% endfor %}
 							</tbody>
 						</table>
-						<form role="form">
+						<!--<form role="form">
 							<div class="form-group">
 								 
 								<label for="exampleInputEmail1">
@@ -168,8 +158,8 @@
 							<div class="form-group">
 								<input type="text" value="Owner" class="form-control" id="task_owner" />
 								
-							<!--</div>
-							<div class="form-group">	-->							 
+							</div>
+							<div class="form-group">
 								<label for="exampleInputFile">
 									ETA
 								</label>
@@ -183,7 +173,7 @@
 							<button type="submit" class="btn btn-primary">
 								Submit
 							</button>
-						</form>
+						</form>-->
 					</div>
 					<div class="col-md-4">
 						<h3 class="text-left text-muted">
