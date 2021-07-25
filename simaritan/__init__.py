@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import MetaData
+from flask_login import LoginManager
 
 from config import Config
 
@@ -21,6 +22,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app=app,metadata=MetaData(naming_convention=naming_convention))
 #db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
+login = LoginManager(app)
 
 from simaritan import routes
 import models
