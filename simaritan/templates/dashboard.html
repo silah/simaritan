@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{{ title }}!</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-  </head>
-  <body>
-
+{% extends "base.html" %}
+{% block body %}
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -26,21 +11,6 @@
 			</div>
 		</div>
 		<div class="row">
-			<!--<div class="col-md-1">
-				<h3>
-					Options
-				</h3>
-				<hr />
-				<ul class="list-unstyled">
-					<li class="list-item">
-						This is a column
-					</li>
-					<li class="list-item">
-						Not sure what this column can be used for
-					</li>
-
-				</ul>
-			</div> -->
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-4">
@@ -79,22 +49,7 @@
 								<p class="float-right">{{tl.eta}}</p>
 								<p>{{ tl.owner }}: {{ tl.activity }}</p>
 							</li>
-							{% endfor %}<!--
-							<li>
-								<strong>New Web Design</strong>
-								<p class="float-right">21 March, 2014</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
-							</li>
-							<li>
-								<strong>21 000 Job Seekers</strong>
-								<p class="float-right">4 March, 2014</p>
-								<p>Curabitur purus sem, malesuada eu luctus eget, suscipit sed turpis. Nam pellentesque felis vitae justo accumsan, sed semper nisi sollicitudin...</p>
-							</li>
-							<li>
-								<strong>{.{Person / team}.}</strong>
-								<p class="float-right">{.{ Time stamp}.}</p>
-								<p>{.{Description of event}.}</p>
-							</li>-->
+							{% endfor %}
 						</ul>
 					</div>
 					<div class="col-md-4">
@@ -146,34 +101,6 @@
     							{% endfor %}
 							</tbody>
 						</table>
-						<!--<form role="form">
-							<div class="form-group">
-								 
-								<label for="exampleInputEmail1">
-									Add actions
-								</label>
-								<input type="Task" value="Action name" class="form-control" id="task_name" />
-								
-							</div>
-							<div class="form-group">
-								<input type="text" value="Owner" class="form-control" id="task_owner" />
-								
-							</div>
-							<div class="form-group">
-								<label for="exampleInputFile">
-									ETA
-								</label>
-								<input type="time" id="inputMDEx1" class="form-control" id="eta" />
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" id="isComplete" /> Already completed ?
-								</label>
-							</div> 
-							<button type="submit" class="btn btn-primary">
-								Submit
-							</button>
-						</form>-->
 					</div>
 					<div class="col-md-4">
 						<h3 class="text-left text-muted">
@@ -209,9 +136,4 @@
 			</div>
 		</div>
 	</div>
-
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-  </body>
-</html>
+{% endblock %}

@@ -4,7 +4,11 @@ from flask import render_template
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    loggedin = False
+    if loggedin:
+        return render_template('index.html')
+    else:
+        return render_template('login.html')
 
 
 @app.route('/dashboard')
