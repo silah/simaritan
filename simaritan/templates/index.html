@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
   </head>
-  <body>
+  <body>-->
+{% extends "base.html" %}
+{% block body %}
 
 	<div class="container-fluid">
 		<div class="row">
@@ -274,8 +276,4 @@
 		</div>
 	</div>
 
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-  </body>
-</html>
+{% endblock %}}

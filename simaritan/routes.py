@@ -1,19 +1,29 @@
 from simaritan import app
-from flask import render_template
+from flask import render_template, flash, redirect
+from simaritan.forms import LoginForm
 
 
 @app.route('/')
+@app.route('/index')
 def index():
     loggedin = False
     if loggedin:
         return render_template('index.html')
     else:
-        return render_template('login.html')
+        return render_template('index.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.username.data, form.remember_me.data
+        ))
+        return redirect('/index')
+    else:
+        return render_template('login.html', title='Log in', form=form)
+
 
 @app.route('/dashboard')
 def dashboard():
