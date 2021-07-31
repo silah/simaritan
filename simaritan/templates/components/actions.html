@@ -1,0 +1,42 @@
+<table class="table table-striped table-hover table-sm">
+	<thead>
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				Action
+			</th>
+			<th>
+				Owner
+			</th>
+			<th>
+				Status / ETA
+			</th>
+		</tr>
+    </thead>
+    <tbody>
+		{% for task in tasks %}
+        		{% if task.status == 'Complete' %}
+        	<tr class="table-success">
+   	    	 	{% endif %}
+   	    	 	{% if task.status != 'Complete' %}
+	    	<tr class="table-danger">
+   	    	 	{% endif %}
+	    		<td>
+	    			{{ task.id }}
+	    		</td>
+	    		<td>
+	    			{{ task.activity }}
+	    		</td>
+	    		<td>
+	    			{{ task.owner }}
+	    		</td>
+	    		<td>
+	    			{{ task.status }}{% if task.status == 'Complete' %}d at {{ task.eta }} {% endif %}
+	    			{% if task.status != 'Complete' %} / {{ task.eta }} {% endif %}
+	    		</td>
+	    	</tr>
+    	{% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+<form class="form-signin" action="" method="post">
+	    {{ taskf.hidden_tag() }}
+		{{ taskf.task.label() }}
+		{{ taskf.task(class="form-control") }}
+		{{ taskf.owner.label() }}
+		{{ taskf.owner(class="form-control") }}
+		{{ taskf.eta.label() }}
+		{{ taskf.eta(class="form-control") }}
+		<div class="checkbox mb-3">
+        	{{ taskf.already_done() }} {{ taskf.already_done.label() }}
+        </div>
+		{{ taskf.submit }}
+</form>

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField
 from wtforms.validators import DataRequired
 
 
@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
 class TaskAdditionForm(FlaskForm):
     task = StringField('Task', validators=[DataRequired()])
     owner = StringField('Owner', validators=[DataRequired()])
-    eta = StringField('ETA', validators=[DataRequired()])
+    eta = TimeField('ETA', validators=[DataRequired()])
     already_done = BooleanField('Already completed')
     submit = SubmitField('Add Task')
 
@@ -21,7 +21,7 @@ class TaskAdditionForm(FlaskForm):
 class EventAdditionForm(FlaskForm):
     event = StringField('Event', validators=[DataRequired()])
     owner = StringField('Owner', validators=[DataRequired()])
-    eta = StringField('Time', validators=[DataRequired()])
+    eta = TimeField('Time', validators=[DataRequired()])
     submit = SubmitField('Add Event')
 
 

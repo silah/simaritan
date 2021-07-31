@@ -1,0 +1,8 @@
+						<div class="list-group">
+							 <strong href="#" class="list-group-item list-group-item-action active">Incident Team</strong>
+							{% for member in team %}
+							 <div class="list-group-item justify-content-between">
+								 {{ member.name }} <span class="">{{ member.team }}</span>
+							</div>
+							{% endfor %}
+						</div>

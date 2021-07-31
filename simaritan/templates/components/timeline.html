@@ -1,0 +1,10 @@
+<ul class="timeline">
+							<!--Timeline is from https://bootsnipp.com/snippets/xrKXW-->
+							{% for tl in timeline %}
+							<li>
+								<strong>{{ tl.type }}</strong>
+								<p class="float-right">{{tl.eta}}</p>
+								<p>{{ tl.owner }}: {{ tl.activity }}</p>
+							</li>
+							{% endfor %}
+						</ul>
