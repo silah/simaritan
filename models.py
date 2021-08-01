@@ -54,6 +54,8 @@ class Task(db.Model):
     incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
     body = db.Column(db.String(512))
     assignee = db.Column(db.String(32), index=True)
+    eta = db.Column(db.String(32))
+    status = db.Column(db.String(32))
     # assignee = db.Column(db.String(32), index=True, ForeignKey='User.username')
 
 
