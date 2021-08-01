@@ -14,16 +14,11 @@
 						{% include "components/timeline.html" %}
 					</div>
 					<div class="col-md-4">
-						<h3>
-							Add Action
-						</h3> <hr />
-						{% include "forms/addTask.html" %}<!-- can use 'ignore missing with/without context -->
-						<br />
-						<h3>
-							Action tracker
-						</h3>
-						<hr />
+
 						{% include "components/actions.html" %}<!-- can use 'ignore missing with/without context -->
+
+						{% include "forms/addTask.html" %}<!-- can use 'ignore missing with/without context -->
+
 					</div>
 					<div class="col-md-4">
 						{% include "components/incdetails.html" %}

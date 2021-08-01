@@ -36,6 +36,7 @@ class Incident(db.Model):
     tasks = db.relationship('Task', backref='incidentno', lazy='dynamic')
     events = db.relationship('Event', backref='incidentno', lazy='dynamic')
     impactstatement = db.relationship('ImpactStatement', backref='incidentno', lazy='dynamic')
+    incidentteam = db.relationship('IncMem', backref='incidentno', lazy='dynamic')
 
 
 class ImpactStatement(db.Model):
@@ -60,7 +61,17 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(512))
     assignee = db.Column(db.String(32), index=True)
+    activity = db.Column(db.String(32))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
+
+    def __repr__(self):
+        return 'Body {}'.format(self.body)
+
+class IncMem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    person = db.Column(db.String(512), index=True)
+    role = db.Column(db.String(32), index=True)
     incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
 
     def __repr__(self):
