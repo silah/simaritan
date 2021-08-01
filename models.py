@@ -68,6 +68,7 @@ class Event(db.Model):
     def __repr__(self):
         return 'Body {}'.format(self.body)
 
+
 class IncMem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     person = db.Column(db.String(512), index=True)
