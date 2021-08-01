@@ -21,6 +21,7 @@ class TaskAdditionForm(FlaskForm):
 class EventAdditionForm(FlaskForm):
     event = StringField('Event', validators=[DataRequired()])
     owner = StringField('Owner', validators=[DataRequired()])
+    activity_type = StringField('Activity type', validators=[DataRequired()])
     eta = TimeField('Time', validators=[DataRequired()])
     submit = SubmitField('Add Event')
 

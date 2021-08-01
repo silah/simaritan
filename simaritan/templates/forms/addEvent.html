@@ -1,3 +1,6 @@
+<h4 class="text-left text-muted">
+Add Timeline Event
+</h4>
 <form class="form-signin" action="" method="post">
 	    {{ eventf.hidden_tag() }}
 		{{ eventf.event.label() }}
@@ -6,6 +9,8 @@
 		{{ eventf.owner(class="form-control") }}
 		{{ eventf.eta.label() }}
 		{{ eventf.eta(class="form-control") }}
+		{{ eventf.activity_type.label() }}
+		{{ eventf.activity_type(class="form-control") }}
         <br />
 		{{ eventf.submit }}
 </form>

@@ -3,29 +3,22 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
-					{% include "components/header-row.html" %}
+					{% include "components/admin-header-row.html" %}
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<h3 class="text-left text-muted">
-							Timeline of events
-						</h3>
-						<hr />
 						{% include "components/timeline.html" %}
 					</div>
 					<div class="col-md-4">
 
 						{% include "components/actions.html" %}<!-- can use 'ignore missing with/without context -->
 
-						{% include "forms/addTask.html" %}<!-- can use 'ignore missing with/without context -->
-
 					</div>
 					<div class="col-md-4">
 						{% include "components/incdetails.html" %}
 
 						{% include "components/team.html" %}
-						<hr />
-						{% include "forms/addMember.html" %}
+
 					</div>
 				</div>
 			</div>

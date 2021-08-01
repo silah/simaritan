@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -32,6 +33,7 @@ class Incident(db.Model):
     id = db.Column(db.Integer)
     incident_no = db.Column(db.String(32), primary_key=True, index=True, unique=True)
     description = db.Column(db.String(512))
+    status = db.Column(db.String(32))
     # DB relationship with tasks and events, backreference to incident number
     tasks = db.relationship('Task', backref='incidentno', lazy='dynamic')
     events = db.relationship('Event', backref='incidentno', lazy='dynamic')
