@@ -30,3 +30,9 @@ class PersonAdditionForm(FlaskForm):
     person = StringField('Name', validators=[DataRequired()])
     role = StringField('Role', validators=[DataRequired()])
     submit = SubmitField('Add Person')
+
+
+class ImpactStatementForm(FlaskForm):
+    statement = StringField('Impact Statement', validators=[DataRequired()])
+    submitter = StringField('Submitter', validators=[DataRequired()])
+    submit = SubmitField('Submit Impact Statement')

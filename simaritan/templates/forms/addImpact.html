@@ -1,0 +1,12 @@
+<h4 class="text-left text-muted">
+Add Timeline Event
+</h4>
+<form class="form-signin" action="" method="post">
+	    {{ impactf.hidden_tag() }}
+		{{ impactf.statement.label() }}
+		{{ impactf.statement(class="form-control") }}
+		{{ impactf.submitter.label() }}
+		{{ impactf.submitter(class="form-control") }}
+        <br />
+		{{ impactf.submit }}
+</form>

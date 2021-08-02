@@ -1,6 +1,6 @@
 from simaritan import app, db
 from flask import render_template, flash, redirect
-from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm
+from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm
 from models import Incident, IncMem, ImpactStatement, Task, Event
 
 
@@ -62,4 +62,26 @@ def admin(incident):
     team = IncMem.query.filter_by(incident_no=incident).all()
 
     return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                           user=user, tasks=tasks, inc=inc, team=team, timeline=timeline)
+                           user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+
+
+@app.route('/submitimpact/<incident>', methods=['GET', 'POST'])
+def submitimpact(incident):
+    form = ImpactStatementForm()
+    inc = Incident.query.filter_by(incident_no=incident).first()
+    impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
+
+    if form.validate_on_submit():
+        sttmnt = ImpactStatement(incident_no=inc.incident_no, body=form.statement.data, submitter=form.submitter.data)
+
+        db.session.add(sttmnt)
+        db.session.commit()
+
+        flash('Statement added: {} by {}'.format(
+            form.statement.data, form.submitter.data
+        ))
+        return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
+                               impacts=impacts, inc=inc, impactf=form)
+    else:
+        return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
+                               impacts=impacts, inc=inc, impactf=form)
