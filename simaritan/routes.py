@@ -1,6 +1,7 @@
-from simaritan import app
+from simaritan import app, db
 from flask import render_template, flash, redirect
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm
+from models import Incident, IncMem, ImpactStatement, Task, Event
 
 
 @app.route('/')
@@ -24,9 +25,21 @@ def login():
     else:
         return render_template('login.html', title='Log in', form=form)
 
+@app.route('/dashboard/<incident>')
+def dashboard(incident):
+    user = {'username': 'Silas'}
+    inc = Incident.query.filter_by(incident_no=incident).first()
+    impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
+    tasks = Task.query.filter_by(incident_no=incident).all()
+    timeline = Event.query.filter_by(incident_no=incident).all()
+    team = IncMem.query.filter_by(incident_no=incident).all()
 
-@app.route('/dashboard')
-def dashboard():
+    return render_template('dashboard.html', title='Incident Dashboard', user=user, tasks=tasks, team=team, timeline=timeline,
+                    impacts=impacts, inc=inc)
+
+
+@app.route('/dashboard_clean')
+def dashboard_clean():
     user = {'username': 'Silas'}
     tasks = [
         {'id': 1, 'activity': 'Send Business Comms', 'owner': 'Silas', 'eta': '15:30', 'status': 'Complete'},

@@ -1,20 +1,20 @@
-						<h3 class="text-left text-muted">
-							Details - {{ details.incidentid }}
-						</h3>
-						<hr />
-						<dl>
-							<dt>
-								Incident description
-							</dt>
-							<dd>
-								{{ details.description }}
-							</dd>
-							<dt>
-								Impact Statements
-							</dt>
-							{% for statement in details.impact_statements %}
-								<dd><br />
-								{{ statement.statement }} - Submitted by {{statement.submitter }}
-								</dd>
-							{% endfor %}
-						</dl>
+<h3 class="text-left text-muted">
+	Details - {{ inc.incident_no }}
+</h3>
+<hr />
+<dl>
+	<dt>
+		Incident description
+	</dt>
+	<dd>
+		{{ inc.description }}
+	</dd>
+	<dt>
+		Impact Statements
+	</dt>
+	{% for statement in impacts %}
+	<dd><br />
+		{{ statement.body }} - Submitted by {{statement.submitter }}
+	</dd>
+	{% endfor %}
+</dl>

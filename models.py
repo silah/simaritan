@@ -80,4 +80,4 @@ class IncMem(db.Model):
     incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
 
     def __repr__(self):
-        return 'Body {}'.format(self.body)
+        return 'Person {}'.format(self.person)

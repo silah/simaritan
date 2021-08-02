@@ -31,10 +31,10 @@
 	    			{{ task.id }}
 	    		</td>
 	    		<td>
-	    			{{ task.activity }}
+	    			{{ task.body }}
 	    		</td>
 	    		<td>
-	    			{{ task.owner }}
+	    			{{ task.assignee }}
 	    		</td>
 	    		<td>
 	    			{{ task.status }}{% if task.status == 'Complete' %}d at {{ task.eta }} {% endif %}
