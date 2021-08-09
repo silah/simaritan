@@ -2,6 +2,7 @@ from simaritan import app, db
 from flask import render_template, flash, redirect
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm
 from models import Incident, IncMem, ImpactStatement, Task, Event
+from sqlalchemy import desc
 
 
 @app.route('/')
@@ -32,7 +33,7 @@ def dashboard(incident):
     inc = Incident.query.filter_by(incident_no=incident).first()
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
     tasks = Task.query.filter_by(incident_no=incident).all()
-    timeline = Event.query.filter_by(incident_no=incident).all()
+    timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     team = IncMem.query.filter_by(incident_no=incident).all()
 
     return render_template('dashboard.html', title='Incident Dashboard', user=user, tasks=tasks, team=team, timeline=timeline,
@@ -58,7 +59,7 @@ def admin(incident):
     inc = Incident.query.filter_by(incident_no=incident).first()
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
     tasks = Task.query.filter_by(incident_no=incident).all()
-    timeline = Event.query.filter_by(incident_no=incident).all()
+    timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     team = IncMem.query.filter_by(incident_no=incident).all()
 
     return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
@@ -73,8 +74,10 @@ def submitimpact(incident):
 
     if form.validate_on_submit():
         sttmnt = ImpactStatement(incident_no=inc.incident_no, body=form.statement.data, submitter=form.submitter.data)
-
+        event = Event(body=form.statement.data, assignee=form.submitter.data, activity='Impact added',
+                      incident_no=inc.incident_no)
         db.session.add(sttmnt)
+        db.session.add(event)
         db.session.commit()
 
         flash('Statement added: {} by {}'.format(

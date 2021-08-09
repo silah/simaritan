@@ -6,7 +6,7 @@
 	{% for tl in timeline %}
 		<li>
 			<strong>{{ tl.activity }}</strong>
-			<p class="float-right">{{tl.timestamp}}</p>
+			<p class="float-right">{{tl.timestamp.strftime('%X')}}</p>
 			<p>{{ tl.assignee }}: {{ tl.body }}</p>
 		</li>
 	{% endfor %}
