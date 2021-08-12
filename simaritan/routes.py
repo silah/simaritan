@@ -2,7 +2,6 @@ from simaritan import app, db
 from flask import render_template, flash, redirect
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm
 from models import Incident, IncMem, ImpactStatement, Task, Event
-from sqlalchemy import desc
 
 
 @app.route('/')
@@ -129,6 +128,7 @@ def submitimpact(incident):
         flash('Statement added: {} by {}'.format(
             form.statement.data, form.submitter.data
         ))
+        impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
         return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
                                impacts=impacts, inc=inc, impactf=form)
     else:
