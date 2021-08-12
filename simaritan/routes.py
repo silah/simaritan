@@ -36,8 +36,9 @@ def dashboard(incident):
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     team = IncMem.query.filter_by(incident_no=incident).all()
 
-    return render_template('dashboard.html', title='Incident Dashboard', user=user, tasks=tasks, team=team, timeline=timeline,
-                    impacts=impacts, inc=inc)
+    return render_template('dashboard.html', title='Incident Dashboard', user=user, tasks=tasks, team=team,
+                           timeline=timeline,
+                           impacts=impacts, inc=inc)
 
 
 @app.route('/dashboard')
@@ -50,11 +51,11 @@ def admin_blank():
     return "You have not selected an Incident"
 
 
-@app.route('/admin/<incident>')
+@app.route('/admin/<incident>', methods=['GET', 'POST'])
 def admin(incident):
     taskform = TaskAdditionForm()
     eventform = EventAdditionForm()
-    personform  = PersonAdditionForm()
+    personform = PersonAdditionForm()
     user = {'username': 'Silas'}
     inc = Incident.query.filter_by(incident_no=incident).first()
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
@@ -62,8 +63,53 @@ def admin(incident):
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     team = IncMem.query.filter_by(incident_no=incident).all()
 
-    return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                           user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+    if taskform.validate_on_submit():
+        task = Task(incident_no=inc.incident_no, body=taskform.task.data, assignee=taskform.owner.data,
+                    eta=taskform.eta.data, status=taskform.already_done.data)
+        event = Event(body=taskform.task.data, assignee=taskform.owner.data, activity='Task Added',
+                      incident_no=inc.incident_no)
+        db.session.add(task)
+        db.session.add(event)
+        db.session.commit()
+
+        flash('Task added: {} assigned to {}'.format(
+            taskform.task.data, taskform.owner.data
+        ))
+        tasks = Task.query.filter_by(incident_no=incident).all()
+        timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
+        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
+                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+    elif eventform.validate_on_submit():
+
+        event = Event(body=eventform.event.data, assignee=eventform.owner.data, activity=eventform.activity_type.data,
+                      incident_no=inc.incident_no)
+
+        db.session.add(event)
+        db.session.commit()
+
+        flash('Event added: {} by {}'.format(
+            eventform.event.data, eventform.owner.data
+        ))
+        timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
+        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
+                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+    elif personform.validate_on_submit():
+        prson = IncMem(incident_no=inc.incident_no, person=personform.person.data, role=personform.role.data)
+        event = Event(body='{}, {} - Joined the incident team'.format(personform.person.data, personform.role.data),
+                      assignee=personform.role.data, activity='Person joined',
+                      incident_no=inc.incident_no)
+        db.session.add(prson)
+        db.session.add(event)
+        db.session.commit()
+
+        flash('{}, {} - Joined the incident team'.format(personform.person.data, personform.role.data))
+        timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
+        team = IncMem.query.filter_by(incident_no=incident).all()
+        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
+                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+    else:
+        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
+                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
 
 
 @app.route('/submitimpact/<incident>', methods=['GET', 'POST'])
