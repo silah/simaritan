@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					{% include "components/header-row.html" %}
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<h4 class="text-left text-muted">
+							DUmmy Headline
+						</h4>
+						<p>This is a placeholder text for when I figure out what to put here.....</p>
+					</div>
+					<div class="col-md-8">
+
+						{% include "forms/startIncident.html" %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

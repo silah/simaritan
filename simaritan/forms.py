@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, HiddenField
 from wtforms.validators import DataRequired
-from datetime import datetime
+#from datetime import datetime
+from wtforms.widgets import TextArea
 
 
 class LoginForm(FlaskForm):
@@ -23,7 +24,7 @@ class EventAdditionForm(FlaskForm):
     event = StringField('Event', validators=[DataRequired()])
     owner = StringField('Owner', validators=[DataRequired()])
     activity_type = StringField('Activity type', validators=[DataRequired()])
-    #eta = TimeField('Time', format='%H:%M', default=datetime.now(), validators=[DataRequired()])
+    # eta = TimeField('Time', format='%H:%M', default=datetime.now(), validators=[DataRequired()])
     submit = SubmitField('Add Event')
 
 
@@ -37,3 +38,10 @@ class ImpactStatementForm(FlaskForm):
     statement = StringField('Impact Statement', validators=[DataRequired()])
     submitter = StringField('Submitter', validators=[DataRequired()])
     submit = SubmitField('Submit Impact Statement')
+
+
+class IncidentStart(FlaskForm):
+    inc_no = StringField('Incident Number', validators=[DataRequired()])
+    description = StringField('Incident Description', widget=TextArea(), validators=[DataRequired()])
+    inc_mgr = SubmitField('Incident Manager', validators=[DataRequired()])
+    submit = SubmitField('Initiate incident')

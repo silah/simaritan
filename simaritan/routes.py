@@ -26,6 +26,8 @@ def login():
         return render_template('login.html', title='Log in', form=form)
 
 
+@app.route('/overview')
+
 @app.route('/dashboard/<incident>')
 def dashboard(incident):
     user = {'username': 'Silas'}
