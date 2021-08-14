@@ -1,0 +1,46 @@
+<h3 class="text-left text-muted">
+	Action tracker
+</h3>
+<hr />
+<table class="table table-striped table-hover table-sm">
+	<thead>
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				Action
+			</th>
+			<th>
+				Owner
+			</th>
+			<th>
+				Status / ETA
+			</th>
+		</tr>
+    </thead>
+    <tbody>
+		{% for inc in incs %}
+        	<tr class="table-success">
+	    		<td>
+	    			{{ inc.incident_no }}
+	    		</td>
+	    		<td>
+	    			{{ task.body }}
+	    		</td>
+	    		<td>
+	    			{{ task.assignee }}
+	    		</td>
+	    		<td>
+					{% if task.status == 'Complete' %}
+						Complete
+					{% elif task.status == '1' %}
+	    				Complete
+					{% else %}
+						Ongoing
+					{% endif %} / {{ task.eta }}
+	    		</td>
+	    	</tr>
+    	{% endfor %}
+    </tbody>
+</table>

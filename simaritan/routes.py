@@ -1,6 +1,7 @@
 from simaritan import app, db
 from flask import render_template, flash, redirect
-from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm
+from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
+    IncidentStart
 from models import Incident, IncMem, ImpactStatement, Task, Event
 
 
@@ -26,11 +27,28 @@ def login():
         return render_template('login.html', title='Log in', form=form)
 
 
-@app.route('/overview')
+@app.route('/overview', methods=['GET', 'POST'])
+def overview():
+    user = {'username': 'Silas', 'id': 1}
+    incf = IncidentStart()
+    users_incidents = Incident.query.filter_by(inc_mgr=user.id).all()
+
+    if incf.validate_on_submit():
+        incident = Incident(incident_no=incf.inc_no.data, description=incf.description.data,
+                            status='Open', inc_mgr=user.id)
+        event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=user.username,
+                      activity='Incident Started', incident_no=incf.incident_no)
+        db.session.add(incident)
+        db.session.add(event)
+        db.session.commit()
+
+        return redirect('/admin/{}'.format(incf.inc_no.data))
+
+    return render_template('startIncident.html', incf=incf, incs=users_incidents)
 
 @app.route('/dashboard/<incident>')
 def dashboard(incident):
-    user = {'username': 'Silas'}
+    user = {'username': 'Silas', 'id': 1}
     inc = Incident.query.filter_by(incident_no=incident).first()
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
     tasks = Task.query.filter_by(incident_no=incident).all()

@@ -43,5 +43,5 @@ class ImpactStatementForm(FlaskForm):
 class IncidentStart(FlaskForm):
     inc_no = StringField('Incident Number', validators=[DataRequired()])
     description = StringField('Incident Description', widget=TextArea(), validators=[DataRequired()])
-    inc_mgr = SubmitField('Incident Manager', validators=[DataRequired()])
+    inc_mgr = StringField('Incident Manager', validators=[DataRequired()])
     submit = SubmitField('Initiate incident')

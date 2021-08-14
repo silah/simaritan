@@ -1,5 +1,5 @@
 <h4 class="text-left text-muted">
-Add Timeline Event
+Initiate an Incident
 </h4>
 <form class="form-signin" action="" method="post">
 	    {{ incf.hidden_tag() }}
@@ -8,7 +8,7 @@ Add Timeline Event
 		{{ incf.inc_mgr.label() }}
 		{{ incf.inc_mgr(class="form-control") }}
 		{{ incf.description.label() }}
-		{{ incf.description(class="form-control", cols="35", rows="20") }}
+		{{ incf.description(class="form-control", cols="20", rows="10") }}
         <br />
 		{{ incf.submit }}
 </form>
