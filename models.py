@@ -24,6 +24,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
+# User Loader function sets the user session, so user remains logged in
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -34,6 +35,8 @@ class Incident(db.Model):
     incident_no = db.Column(db.String(32), primary_key=True, index=True, unique=True)
     description = db.Column(db.String(512))
     status = db.Column(db.String(32))
+    inc_mgr = db.Column(db.Integer, index=True)
+    start_time = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     # DB relationship with tasks and events, backreference to incident number
     tasks = db.relationship('Task', backref='incidentno', lazy='dynamic')
     events = db.relationship('Event', backref='incidentno', lazy='dynamic')

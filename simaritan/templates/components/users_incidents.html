@@ -1,0 +1,40 @@
+<h3 class="text-left text-muted">
+	Your incidents
+</h3>
+<hr />
+<table class="table table-striped table-hover table-sm">
+	<thead>
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				View
+			</th>
+			<th>
+				Edit
+			</th>
+			<th>
+				Report
+			</th>
+		</tr>
+    </thead>
+    <tbody>
+		{% for inc in incs %}
+        	<tr class="table-success">
+	    		<td>
+	    			{{ inc.incident_no }}
+	    		</td>
+	    		<td>
+					<a href="dashboard/{{ inc.incident_no }}" target="blank">View</a>
+	    		</td>
+	    		<td>
+	    			<a href="admin/{{ inc.incident_no }}">Edit</a>
+	    		</td>
+	    		<td>
+					<a href="report/{{ inc.incident_no }}">Report</a>
+	    		</td>
+	    	</tr>
+    	{% endfor %}
+    </tbody>
+</table>

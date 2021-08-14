@@ -22,9 +22,9 @@
     <tbody>
 		{% for task in tasks %}
         		{% if task.status == 'Complete' %}
+				{% elif task.status == '1' %}
         	<tr class="table-success">
-   	    	 	{% endif %}
-   	    	 	{% if task.status != 'Complete' %}
+   	    	 	{% else %}
 	    	<tr class="table-danger">
    	    	 	{% endif %}
 	    		<td>
@@ -37,8 +37,13 @@
 	    			{{ task.assignee }}
 	    		</td>
 	    		<td>
-	    			{{ task.status }}{% if task.status == 'Complete' %}d at {{ task.eta }} {% endif %}
-	    			{% if task.status != 'Complete' %} / {{ task.eta }} {% endif %}
+					{% if task.status == 'Complete' %}
+						Complete
+					{% elif task.status == '1' %}
+	    				Complete
+					{% else %}
+						Ongoing
+					{% endif %} / {{ task.eta }}
 	    		</td>
 	    	</tr>
     	{% endfor %}

@@ -19,10 +19,12 @@ naming_convention = {
 app = Flask(__name__)
 app.config.from_object(Config)
 # Define the Database, adding Metadata to get around the SQLite limitation around altering databases
-db = SQLAlchemy(app=app,metadata=MetaData(naming_convention=naming_convention))
-#db = SQLAlchemy(app)
+db = SQLAlchemy(app=app, metadata=MetaData(naming_convention=naming_convention))
+# db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 login = LoginManager(app)
+login.login_view = 'login'
 
 from simaritan import routes
 import models
+
