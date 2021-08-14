@@ -11,25 +11,29 @@ from models import Incident, IncMem, ImpactStatement, Task, Event, User
 @app.route('/')
 @app.route('/index')
 def index():
-    loggedin = False
-    if loggedin:
-        return render_template('index.html')
-    else:
-        return render_template('index.html')
+    # If a user is logged in, go to overview, otherwise go to login
+    return redirect(url_for('overview'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # If the user is already authenticated, go to the overview page.
     if current_user.is_authenticated:
         return redirect(url_for('overview'))
 
+    # create a login form object
     form = LoginForm()
+
+    # Condition if user is hitting Login as a result of submitting the login form
     if form.validate_on_submit():
+        # Get the user data for username in question
         user = User.query.filter_by(username=form.username.data).first()
+        # If data doesn't exist, or oif password doesn't match, failure.
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
 
+        # if data not match is passed, login the user.
         login_user(user, remember=form.remember_me.data)
 
         # Fetch the page user was trying to go to, in case login challenge was presented
@@ -37,7 +41,7 @@ def login():
         # Check if there is a next page arg and check that arg is for same server with netloc
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('overview')
-
+        # Redirect to the next page
         return redirect(next_page)
     else:
         return render_template('login.html', title='Log in', form=form)
@@ -52,22 +56,26 @@ def logout():
 @app.route('/overview', methods=['GET', 'POST'])
 @login_required
 def overview():
-    user = {'username': 'Silas', 'id': 1}
+    # Create an Instatiation form object
     incf = IncidentStart()
-    users_incidents = Incident.query.filter_by(inc_mgr=user['id']).order_by(Incident.id.asc()).all()
-
+    # Get the incidents for the logged in user, so they can be displayed
+    users_incidents = Incident.query.filter_by(inc_mgr=current_user.id).order_by(Incident.id.asc()).all()
+    # If the incident form is submitted
     if incf.validate_on_submit():
-        user = {'username': 'Silas', 'id': 1}
+        # Create an incident
         incident = Incident(incident_no=incf.inc_no.data, description=incf.description.data,
-                            status='Open', inc_mgr=user['id'])
-        event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=user['username'],
+                            status='Open', inc_mgr=current_user.id)
+        # Create a timeline event for the incident, denominating the start
+        event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=current_user.username,
                       activity='Incident Started', incident_no=incf.inc_no.data)
+        # Set the incident manager
         incmem = IncMem(incident_no=incf.inc_no.data, person=incf.inc_mgr.data, role='Incident Manager')
+        # Write to database
         db.session.add(incident)
         db.session.add(event)
         db.session.add(incmem)
         db.session.commit()
-
+        # Go to admin for the incident
         return redirect('/admin/{}'.format(incf.inc_no.data))
 
     return render_template('overview.html', incf=incf, incs=users_incidents, title='Managers overview')
@@ -75,37 +83,51 @@ def overview():
 
 @app.route('/dashboard/<incident>')
 def dashboard(incident):
-    user = {'username': 'Silas', 'id': 1}
+    # Grab all the information about the incident, from the database
     inc = Incident.query.filter_by(incident_no=incident).first()
+
+    # If there is no incident of the number accessed, send to error page
+    if inc is None:
+        return render_template('notfound.html', incident=incident, title='Not found!')
+
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
     tasks = Task.query.filter_by(incident_no=incident).all()
+    # Filter the timeline by the timestamp, in descending order to get the latest times on top
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     team = IncMem.query.filter_by(incident_no=incident).all()
-
-    return render_template('dashboard.html', title='Incident Dashboard', user=user, tasks=tasks, team=team,
+    # render dashboard
+    return render_template('dashboard.html', title='Incident Dashboard', tasks=tasks, team=team,
                            timeline=timeline,
                            impacts=impacts, inc=inc)
 
 
+#Handle access to dashboard and admin route, with no incident no provided
 @app.route('/dashboard')
 def dashboard_blank():
-    return "You have not selected an Incident"
+    return render_template('notfound.html', incident='blank', title='Not found!')
 
 
 @app.route('/admin')
 @login_required
 def admin_blank():
-    return "You have not selected an Incident"
+    return render_template('notfound.html', incident='blank', title='Not found!')
 
 
 @app.route('/admin/<incident>', methods=['GET', 'POST'])
 @login_required
 def admin(incident):
+    #Create the Form objects
     taskform = TaskAdditionForm()
     eventform = EventAdditionForm()
     personform = PersonAdditionForm()
-    user = {'username': 'Silas'}
+
     inc = Incident.query.filter_by(incident_no=incident).first()
+
+    # If non-existing incident is accessed, show the not found page.
+    if inc is None:
+        return render_template('notfound.html', incident=incident, title='Not found!')
+
+    # Fetch all the information about the incident.
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
     tasks = Task.query.filter_by(incident_no=incident).all()
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
@@ -126,7 +148,7 @@ def admin(incident):
         tasks = Task.query.filter_by(incident_no=incident).all()
         timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
         return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
     elif eventform.validate_on_submit():
 
         event = Event(body=eventform.event.data, assignee=eventform.owner.data, activity=eventform.activity_type.data,
@@ -140,7 +162,7 @@ def admin(incident):
         ))
         timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
         return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
     elif personform.validate_on_submit():
         prson = IncMem(incident_no=inc.incident_no, person=personform.person.data, role=personform.role.data)
         event = Event(body='{}, {} - Joined the incident team'.format(personform.person.data, personform.role.data),
@@ -154,10 +176,10 @@ def admin(incident):
         timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
         team = IncMem.query.filter_by(incident_no=incident).all()
         return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
     else:
         return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               user=user, tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
 
 
 @app.route('/submitimpact/<incident>', methods=['GET', 'POST'])

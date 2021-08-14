@@ -14,33 +14,12 @@
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    {% block header_extra %} {% endblock %}
-
-  </head>
-  <body>
-
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-                {% include 'components/authenticated_navbar.html' %}
+<body>
 				<div class="jumbotron">
 					<h3>
-						Hello, world!
+						The incident ({{ incident }}) you were looking for, could not be found
 					</h3>
+                    <p>Please double check the incident number</p>
 				</div>
-			</div>
-		</div>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-  <ul>
-    {% for msg in messages %}
-    <li>{{ msg }}</li>
-    {% endfor %}
-  </ul>
-    {% endif %}
-  {% endwith %}
-  {% block body %}{% endblock %}
-
-
-  </body>
+</body>
 </html>
