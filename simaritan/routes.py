@@ -1,8 +1,11 @@
+from flask_login import login_user, current_user, logout_user, login_required
+from werkzeug.urls import url_parse
+
 from simaritan import app, db
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, url_for, request
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
     IncidentStart
-from models import Incident, IncMem, ImpactStatement, Task, Event
+from models import Incident, IncMem, ImpactStatement, Task, Event, User
 
 
 @app.route('/')
@@ -17,34 +20,58 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('overview'))
+
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.username.data, form.remember_me.data
-        ))
-        return redirect('/index')
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+
+        login_user(user, remember=form.remember_me.data)
+
+        # Fetch the page user was trying to go to, in case login challenge was presented
+        next_page = request.args.get('next')
+        # Check if there is a next page arg and check that arg is for same server with netloc
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('overview')
+
+        return redirect(next_page)
     else:
         return render_template('login.html', title='Log in', form=form)
 
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+
 @app.route('/overview', methods=['GET', 'POST'])
+@login_required
 def overview():
     user = {'username': 'Silas', 'id': 1}
     incf = IncidentStart()
-    users_incidents = Incident.query.filter_by(inc_mgr=user.id).all()
+    users_incidents = Incident.query.filter_by(inc_mgr=user['id']).order_by(Incident.id.asc()).all()
 
     if incf.validate_on_submit():
+        user = {'username': 'Silas', 'id': 1}
         incident = Incident(incident_no=incf.inc_no.data, description=incf.description.data,
-                            status='Open', inc_mgr=user.id)
-        event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=user.username,
-                      activity='Incident Started', incident_no=incf.incident_no)
+                            status='Open', inc_mgr=user['id'])
+        event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=user['username'],
+                      activity='Incident Started', incident_no=incf.inc_no.data)
+        incmem = IncMem(incident_no=incf.inc_no.data, person=incf.inc_mgr.data, role='Incident Manager')
         db.session.add(incident)
         db.session.add(event)
+        db.session.add(incmem)
         db.session.commit()
 
         return redirect('/admin/{}'.format(incf.inc_no.data))
 
-    return render_template('startIncident.html', incf=incf, incs=users_incidents)
+    return render_template('overview.html', incf=incf, incs=users_incidents, title='Managers overview')
+
 
 @app.route('/dashboard/<incident>')
 def dashboard(incident):
@@ -66,11 +93,13 @@ def dashboard_blank():
 
 
 @app.route('/admin')
+@login_required
 def admin_blank():
     return "You have not selected an Incident"
 
 
 @app.route('/admin/<incident>', methods=['GET', 'POST'])
+@login_required
 def admin(incident):
     taskform = TaskAdditionForm()
     eventform = EventAdditionForm()

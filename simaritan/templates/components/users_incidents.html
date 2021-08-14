@@ -1,5 +1,5 @@
 <h3 class="text-left text-muted">
-	Action tracker
+	Your incidents
 </h3>
 <hr />
 <table class="table table-striped table-hover table-sm">
@@ -9,13 +9,13 @@
 				#
 			</th>
 			<th>
-				Action
+				View
 			</th>
 			<th>
-				Owner
+				Edit
 			</th>
 			<th>
-				Status / ETA
+				Report
 			</th>
 		</tr>
     </thead>
@@ -26,19 +26,13 @@
 	    			{{ inc.incident_no }}
 	    		</td>
 	    		<td>
-	    			{{ task.body }}
+					<a href="dashboard/{{ inc.incident_no }}" target="blank">View</a>
 	    		</td>
 	    		<td>
-	    			{{ task.assignee }}
+	    			<a href="admin/{{ inc.incident_no }}">Edit</a>
 	    		</td>
 	    		<td>
-					{% if task.status == 'Complete' %}
-						Complete
-					{% elif task.status == '1' %}
-	    				Complete
-					{% else %}
-						Ongoing
-					{% endif %} / {{ task.eta }}
+					<a href="report/{{ inc.incident_no }}">Report</a>
 	    		</td>
 	    	</tr>
     	{% endfor %}

@@ -24,6 +24,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
+# User Loader function sets the user session, so user remains logged in
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
