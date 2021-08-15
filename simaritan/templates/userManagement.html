@@ -29,6 +29,9 @@
 										<th>
 											Team
 										</th>
+										<th>
+											Delete
+										</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -39,12 +42,19 @@
 										</td>
 										<td>
 											{{ user.username }}
+
 										</td>
 										<td>
 											{{ user.role }}
 										</td>
 										<td>
 											{{ user.team }}
+										</td>
+										<td>
+											<form method="post" action="update/deleteuser">
+												<input type="hidden" value="{{ user.id }}" name="userid" />
+												<a onclick="this.parentNode.submit();">[X]</a>
+											</form>
 										</td>
 									</tr>
 									{% endfor %}

@@ -2,7 +2,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
 from simaritan import app, db
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, make_response
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
     IncidentStart, UserReg
 from models import Incident, IncMem, ImpactStatement, Task, Event, User
@@ -230,3 +230,57 @@ def submitimpact(incident):
     else:
         return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
                                impacts=impacts, inc=inc, impactf=form)
+
+
+@app.route('/report/<incident>')
+@login_required
+def report(incident):
+
+    # Get the timeline for the CSV file
+    timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
+    # Start with a blank string
+    csv = 'Time,Submitter,Activity,Description'
+    for t in timeline:
+        csv += '\n{},{},{},{}'.format(t.timestamp, t.assignee, t.activity, t.body)
+
+    response = make_response(csv)
+    cd = 'attachment; filename=report_{}'.format(incident)
+    response.headers['Content-Disposition'] = cd
+    response.mimetype = 'text/csv'
+
+    return response
+
+
+@app.route('/update/<item>', methods=['POST'])
+@login_required
+def update(item):
+    if item == 'deleteuser':
+        # grab form data
+        usrid = request.form.get("userid")
+        # execute database action
+        usr = User.query.get(usrid)
+        db.session.delete(usr)
+        db.session.commit()
+
+        return redirect(url_for('userManagement'))
+    elif item == 'completetask':
+        # grab form data
+        taskid = request.form.get("taskid")
+        incno = request.form.get("inc")
+
+        # Alter the task
+        tsk = Task.query.get(taskid)
+        tsk.status = '1'
+
+        #Create a timeline event for the action
+
+        event = Event(body='Task Completed: {}'.format(tsk.body), assignee=tsk.assignee, activity='Task Completed',
+                      incident_no=incno)
+        # Add and commit
+        db.session.add(event)
+
+        db.session.commit()
+
+        return redirect('/dashboard/{}'.format(incno))
+    else:
+        return redirect(url_for('overview'))
