@@ -273,7 +273,6 @@ def update(item):
         tsk.status = '1'
 
         #Create a timeline event for the action
-
         event = Event(body='Task Completed: {}'.format(tsk.body), assignee=tsk.assignee, activity='Task Completed',
                       incident_no=incno)
         # Add and commit
