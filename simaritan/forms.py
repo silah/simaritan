@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, HiddenField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, HiddenField, SelectField
 from wtforms.validators import DataRequired
 #from datetime import datetime
 from wtforms.widgets import TextArea
@@ -45,3 +45,13 @@ class IncidentStart(FlaskForm):
     description = StringField('Incident Description', widget=TextArea(), validators=[DataRequired()])
     inc_mgr = StringField('Incident Manager', validators=[DataRequired()])
     submit = SubmitField('Initiate incident')
+
+
+class UserReg(FlaskForm):
+    uname = StringField('Username', validators=[DataRequired()])
+    full_name = StringField('Full name', validators=[DataRequired()])
+    email = StringField('E-mail', validators=[DataRequired()])
+    role = SelectField('Role', choices=['Incident Manager', 'Stakeholder', 'Technical Teams'])
+    team = StringField('Team/Group', validators=[DataRequired()])
+    password = StringField('Password', validators=[DataRequired()])
+    submit = SubmitField('Register user')

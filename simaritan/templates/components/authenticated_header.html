@@ -1,8 +1,8 @@
 <div class="col-md-4">
 	<div class="alert alert-success alert-dismissable">
 		<h4>
-			Incident Start Form
-		</h4> blah blah
+			Authenticated Area
+		</h4> You are logged in as <strong>{{ current_user.username }}</strong> with the role of <strong>{{ current_user.role }}</strong>
 	</div>
 </div>
 <div class="col-md-4">
@@ -14,6 +14,7 @@
 </div>
 <div class="col-md-4">
 	<div class="alert alert-success alert-dismissable">
-        {% include 'components/authenticated_navbar.html' %}
+		<h4>Hello World</h4>
+
 	</div>
 </div>

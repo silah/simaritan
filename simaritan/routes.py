@@ -4,7 +4,7 @@ from werkzeug.urls import url_parse
 from simaritan import app, db
 from flask import render_template, flash, redirect, url_for, request
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
-    IncidentStart
+    IncidentStart, UserReg
 from models import Incident, IncMem, ImpactStatement, Task, Event, User
 
 
@@ -51,6 +51,31 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+
+@app.route('/usermanagement', methods=['GET', 'POST'])
+@login_required
+def userManagement():
+    users = User.query.all()
+    regf = UserReg()
+
+    if regf.validate_on_submit():
+        # Grab details from Form and create a User object
+        usr = User(username=regf.uname.data, name=regf.full_name.data, email=regf.email.data, role=regf.role.data,
+                   team=regf.team.data)
+        # Set users password
+        usr.set_password(regf.password.data)
+
+        #Add to DB
+        db.session.add(usr)
+        db.session.commit()
+
+        # Update the user list so showing the new user
+        users = User.query.all()
+
+        return render_template('userManagement.html', users=users, regf=regf)
+
+    return render_template('userManagement.html', users=users, regf=regf)
 
 
 @app.route('/overview', methods=['GET', 'POST'])

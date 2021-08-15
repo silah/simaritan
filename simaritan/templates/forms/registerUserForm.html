@@ -1,0 +1,22 @@
+<h4>
+	Register User
+</h4>
+
+<form class="form-signin" action="" method="post">
+	    {{ regf.hidden_tag() }}
+		{{ regf.uname.label() }}
+		{{ regf.uname(class="form-control") }}
+		{{ regf.full_name.label() }}
+		{{ regf.full_name(class="form-control") }}
+		{{ regf.email.label() }}
+		{{ regf.email(class="form-control") }}
+		{{ regf.role.label() }}
+		{{ regf.role(class="form-control") }}
+		{{ regf.team.label() }}
+		{{ regf.team(class="form-control") }}
+		{{ regf.password.label() }}
+		{{ regf.password(class="form-control") }}
+
+	<br />
+		{{ regf.submit }}
+</form>

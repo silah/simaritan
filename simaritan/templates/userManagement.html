@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block body %}
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					{% include "components/authenticated_header.html" %}
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						{% include "forms/registerUserForm.html" %}<!-- can use 'ignore missing with/without context -->
+					</div>
+					<div class="col-md-4">
+						<h3 class="text-left text-muted">
+							Registered users
+						</h3>
+						<hr />
+							<table class="table table-striped table-hover table-sm">
+								<thead>
+									<tr>
+										<th>
+											Name
+										</th>
+										<th>
+											Username
+										</th>
+										<th>
+											Role
+										</th>
+										<th>
+											Team
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for user in users %}
+									<tr class="table">
+										<td>
+											{{ user.name }}
+										</td>
+										<td>
+											{{ user.username }}
+										</td>
+										<td>
+											{{ user.role }}
+										</td>
+										<td>
+											{{ user.team }}
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+
+					</div>
+					<div class="col-md-4">
+						<h4>Hello World</h4>
+							<p>Placeholder text</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -27,9 +27,9 @@
                         <h4 class="mb-3">Subheading</h4>
                         <!-- If the viewer is an authenticated user, show the options -->
                         {% if current_user.is_authenticated %}
-                        <a class="btn btn-primary" href="" role="button">Call to action</a>
-                        <a class="btn btn-primary" href="" role="button">Call to action</a>
-                        <a class="btn btn-primary" href="" role="button">Call to action</a>
+                        <a class="btn btn-primary" href="{{ url_for('overview') }}" role="button">Overview</a>
+                        <a class="btn btn-primary" href="{{ url_for('userManagement') }}" role="button">User Management</a>
+                        <a class="btn btn-primary" href="{{ url_for('logout') }}" role="button">Log out</a>
                         {% endif %}
                     </div>
                 </header>
