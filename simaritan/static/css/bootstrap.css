@@ -4927,9 +4927,9 @@ a.badge:focus, a.badge:hover {
 
 .jumbotron {
   padding: 2rem 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   background-color: #eceeef;
-  border-radius: 0.3rem;
+  border-radius: 0.1rem;
 }
 
 @media (min-width: 576px) {

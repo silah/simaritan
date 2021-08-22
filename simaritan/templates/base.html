@@ -25,6 +25,7 @@
                 <header>
                     <div class="jumbotron">
                         <h4 class="mb-3">Incident: {% if inc %}{{inc.incident_no}}{% else %} None defined{%endif%}</h4>
+                        <hr />
                         <!-- If the viewer is an authenticated user, show the options -->
                         {% if current_user.is_authenticated %}
                             {% if current_user.role == "Incident Manager" %}
