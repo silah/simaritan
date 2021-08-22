@@ -9,6 +9,7 @@
 				Action
 			</th>
 			{% if current_user.is_authenticated %}
+
 			<th>
 				Mark Complete
 			</th>
@@ -23,8 +24,7 @@
     </thead>
     <tbody>
 		{% for task in tasks %}
-        		{% if task.status == 'Complete' %}
-				{% elif task.status == '1' %}
+				{% if task.status == '1' %}
         	<tr class="table-success">
    	    	 	{% else %}
 	    	<tr class="table-danger">
@@ -35,11 +35,15 @@
 	    		</td>
 			{% if current_user.is_authenticated %}
 				<td>
+					{% if task.status == '1' %}
+					Completed
+					{% else %}
 					<form method="post" action="../update/completetask">
 						<input type="hidden" value="{{ task.id }}" name="taskid" />
 						<input type="hidden" value="{{ inc.incident_no }}" name="inc" />
 						<a onclick="this.parentNode.submit();">[Complete]</a>
 					</form>
+					{% endif %}
 				</td>
 			{% endif %}
 	    		<td>

@@ -58,6 +58,7 @@ def logout():
 def userManagement():
     users = User.query.all()
     regf = UserReg()
+    incidents = Incident.query.order_by(Incident.id.asc()).all()
 
     if regf.validate_on_submit():
         # Grab details from Form and create a User object
@@ -73,9 +74,9 @@ def userManagement():
         # Update the user list so showing the new user
         users = User.query.all()
 
-        return render_template('userManagement.html', users=users, regf=regf)
+        return redirect(url_for('userManagement'))
 
-    return render_template('userManagement.html', users=users, regf=regf)
+    return render_template('userManagement.html', users=users, regf=regf, incs=incidents)
 
 
 @app.route('/overview', methods=['GET', 'POST'])
@@ -109,6 +110,7 @@ def overview():
 
 @app.route('/dashboard/<incident>')
 def dashboard(incident):
+
     # Grab all the information about the incident, from the database
     inc = Incident.query.filter_by(incident_no=incident).first()
 
@@ -168,13 +170,8 @@ def admin(incident):
         db.session.add(event)
         db.session.commit()
 
-        flash('Task added: {} assigned to {}'.format(
-            taskform.task.data, taskform.owner.data
-        ))
-        tasks = Task.query.filter_by(incident_no=incident).all()
-        timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
-        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+        return redirect('/admin/{}'.format(incident))
+
     elif eventform.validate_on_submit():
 
         event = Event(body=eventform.event.data, assignee=eventform.owner.data, activity=eventform.activity_type.data,
@@ -183,12 +180,8 @@ def admin(incident):
         db.session.add(event)
         db.session.commit()
 
-        flash('Event added: {} by {}'.format(
-            eventform.event.data, eventform.owner.data
-        ))
-        timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
-        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+        return redirect('/admin/{}'.format(incident))
+
     elif personform.validate_on_submit():
         prson = IncMem(incident_no=inc.incident_no, person=personform.person.data, role=personform.role.data)
         event = Event(body='{}, {} - Joined the incident team'.format(personform.person.data, personform.role.data),
@@ -198,11 +191,8 @@ def admin(incident):
         db.session.add(event)
         db.session.commit()
 
-        flash('{}, {} - Joined the incident team'.format(personform.person.data, personform.role.data))
-        timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
-        team = IncMem.query.filter_by(incident_no=incident).all()
-        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+        return redirect('/admin/{}'.format(incident))
+
     else:
         return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
                                tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
