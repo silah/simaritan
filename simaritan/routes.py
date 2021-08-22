@@ -1,4 +1,5 @@
 from flask_login import login_user, current_user, logout_user, login_required
+
 from werkzeug.urls import url_parse
 
 from simaritan import app, db
@@ -6,6 +7,7 @@ from flask import render_template, flash, redirect, url_for, request, make_respo
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
     IncidentStart, UserReg
 from models import Incident, IncMem, ImpactStatement, Task, Event, User
+from sqlalchemy.exc import IntegrityError
 
 
 @app.route('/')
@@ -44,7 +46,7 @@ def login():
         # Redirect to the next page
         return redirect(next_page)
     else:
-        return render_template('login.html', title='Log in', form=form)
+        return render_template('login.html', title='Log in to Simaritan', form=form)
 
 
 @app.route('/logout')
@@ -69,14 +71,20 @@ def userManagement():
 
         # Add to DB
         db.session.add(usr)
-        db.session.commit()
+        # Try to commit and catch exception where the Users email is already registered
+        try:
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            return render_template('/userManagement.html', msg='Users e-mail is already registered',
+                                   users=users, regf=regf, incs=incidents, title='User Management')
 
         # Update the user list so showing the new user
         users = User.query.all()
 
         return redirect(url_for('userManagement'))
 
-    return render_template('userManagement.html', users=users, regf=regf, incs=incidents)
+    return render_template('userManagement.html', users=users, regf=regf, incs=incidents, title='User Management')
 
 
 @app.route('/overview', methods=['GET', 'POST'])
@@ -124,9 +132,8 @@ def dashboard(incident):
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     team = IncMem.query.filter_by(incident_no=incident).all()
     # render dashboard
-    return render_template('dashboard.html', title='Incident Dashboard', tasks=tasks, team=team,
-                           timeline=timeline,
-                           impacts=impacts, inc=inc)
+    return render_template('dashboard.html', title='Incident Dashboard for {}'.format(inc.incident_no),
+                           tasks=tasks, team=team, timeline=timeline, impacts=impacts, inc=inc)
 
 
 # Handle access to dashboard and admin route, with no incident no provided
@@ -194,8 +201,9 @@ def admin(incident):
         return redirect('/admin/{}'.format(incident))
 
     else:
-        return render_template('admin.html', title='Admin', taskf=taskform, eventf=eventform, teamf=personform,
-                               tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
+        return render_template('admin.html', title='Admin Section for {}'.format(inc.incident_no), taskf=taskform,
+                               eventf=eventform, teamf=personform, tasks=tasks, impacts=impacts, inc=inc,
+                               team=team, timeline=timeline)
 
 
 @app.route('/admin/close/<incident>')

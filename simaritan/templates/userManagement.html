@@ -8,6 +8,9 @@
 				<div class="row">
 					<div class="col-md-4">
 						{% include "forms/registerUserForm.html" %}<!-- can use 'ignore missing with/without context -->
+						{% if msg %}
+						<strong>{{ msg }}</strong>
+						{% endif %}
 					</div>
 					<div class="col-md-8">
 						<h3 class="text-left text-muted">
@@ -55,6 +58,7 @@
 												<input type="hidden" value="{{ user.id }}" name="userid" />
 												<a onclick="this.parentNode.submit();">[X]</a>
 											</form>
+
 										</td>
 									</tr>
 									{% endfor %}
