@@ -6,9 +6,6 @@
 	<thead>
 		<tr>
 			<th>
-				#
-			</th>
-			<th>
 				Action
 			</th>
 			{% if current_user.is_authenticated %}
@@ -32,9 +29,7 @@
    	    	 	{% else %}
 	    	<tr class="table-danger">
    	    	 	{% endif %}
-	    		<td>
-	    			{{ task.id }}
-	    		</td>
+
 	    		<td>
 	    			{{ task.body }}
 	    		</td>

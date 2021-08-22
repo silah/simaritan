@@ -28,12 +28,12 @@ def login():
     if form.validate_on_submit():
         # Get the user data for username in question
         user = User.query.filter_by(username=form.username.data).first()
-        # If data doesn't exist, or oif password doesn't match, failure.
+        # If data doesn't exist, or if password doesn't match, failure.
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
 
-        # if data not match is passed, login the user.
+        # if data matches, login the user.
         login_user(user, remember=form.remember_me.data)
 
         # Fetch the page user was trying to go to, in case login challenge was presented
@@ -66,7 +66,7 @@ def userManagement():
         # Set users password
         usr.set_password(regf.password.data)
 
-        #Add to DB
+        # Add to DB
         db.session.add(usr)
         db.session.commit()
 
@@ -84,12 +84,13 @@ def overview():
     # Create an Instatiation form object
     incf = IncidentStart()
     # Get the incidents for the logged in user, so they can be displayed
-    users_incidents = Incident.query.filter_by(inc_mgr=current_user.id).order_by(Incident.id.asc()).all()
+    users_incidents = Incident.query.order_by(Incident.id.asc()).all()
+
     # If the incident form is submitted
     if incf.validate_on_submit():
         # Create an incident
         incident = Incident(incident_no=incf.inc_no.data, description=incf.description.data,
-                            status='Open', inc_mgr=current_user.id)
+                            status='open', inc_mgr=current_user.id)
         # Create a timeline event for the incident, denominating the start
         event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=current_user.username,
                       activity='Incident Started', incident_no=incf.inc_no.data)
@@ -126,7 +127,7 @@ def dashboard(incident):
                            impacts=impacts, inc=inc)
 
 
-#Handle access to dashboard and admin route, with no incident no provided
+# Handle access to dashboard and admin route, with no incident no provided
 @app.route('/dashboard')
 def dashboard_blank():
     return render_template('notfound.html', incident='blank', title='Not found!')
@@ -141,7 +142,7 @@ def admin_blank():
 @app.route('/admin/<incident>', methods=['GET', 'POST'])
 @login_required
 def admin(incident):
-    #Create the Form objects
+    # Create the Form objects
     taskform = TaskAdditionForm()
     eventform = EventAdditionForm()
     personform = PersonAdditionForm()
@@ -207,6 +208,28 @@ def admin(incident):
                                tasks=tasks, impacts=impacts, inc=inc, team=team, timeline=timeline)
 
 
+@app.route('/admin/close/<incident>')
+@login_required
+def closeinc(incident):
+
+    if incident is None:
+        return render_template('notfound.html', incident=incident, title='Not found!')
+
+    if current_user.role == "Incident Manager":
+        inc = Incident.query.filter_by(incident_no=incident).first()
+        inc.status = 'closed'
+        event = Event(body='Incident {} has been closed by {}'.format(incident, current_user.username),
+                      assignee=current_user.username, activity='Incident Closure',
+                      incident_no=incident)
+
+        db.session.add(event)
+        db.session.commit()
+
+        return redirect(url_for('overview'))
+    else:
+        return render_template('notpermitted.html')
+
+
 @app.route('/submitimpact/<incident>', methods=['GET', 'POST'])
 def submitimpact(incident):
     form = ImpactStatementForm()
@@ -235,7 +258,6 @@ def submitimpact(incident):
 @app.route('/report/<incident>')
 @login_required
 def report(incident):
-
     # Get the timeline for the CSV file
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     # Start with a blank string
@@ -272,7 +294,7 @@ def update(item):
         tsk = Task.query.get(taskid)
         tsk.status = '1'
 
-        #Create a timeline event for the action
+        # Create a timeline event for the action
         event = Event(body='Task Completed: {}'.format(tsk.body), assignee=tsk.assignee, activity='Task Completed',
                       incident_no=incno)
         # Add and commit

@@ -13,9 +13,17 @@
 	</div>
 </div>
 <div class="col-md-4">
-	<div class="alert alert-success alert-dismissable">
+	{% if inc.status == 'open' %}
+	<div class="alert alert-success alert-danger">
 		<h4>
-			Status
-		</h4> <strong>Warning!</strong> Its still broken!
+			Incident Status
+		</h4> <strong>Ongoing!</strong>
 	</div>
+	{% else %}
+		<div class="alert alert-success alert-dismissable">
+		<h4>
+			Incident Status
+		</h4> <strong>Resolved!</strong>
+	</div>
+	{% endif %}
 </div>

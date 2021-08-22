@@ -1,3 +1,4 @@
+{% if inc.status == 'open' %}
 <div class="col-md-4">
 	<div class="alert alert-success alert-dismissable">
 		{% include "forms/addEvent.html" %}
@@ -13,3 +14,20 @@
 			{% include "forms/addMember.html" %}
 	</div>
 </div>
+{% else %}
+<div class="col-md-4">
+	<div class="alert alert-success alert-dismissable">
+		<h4>You cannot add events to a closed incident</h4>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="alert alert-success alert-dismissable">
+		<h4>You cannot add tasks to a closed incident</h4>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="alert alert-success alert-dismissable">
+		<h4>You cannot add members to a closed incident</h4>
+	</div>
+</div>
+{% endif %}

@@ -51,7 +51,7 @@ class UserReg(FlaskForm):
     uname = StringField('Username', validators=[DataRequired()])
     full_name = StringField('Full name', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired()])
-    role = SelectField('Role', choices=['Incident Manager', 'Stakeholder', 'Technical Teams'])
+    role = SelectField('Role', choices=['Incident Manager', 'Stakeholder', 'Technical Teams '])
     team = StringField('Team/Group', validators=[DataRequired()])
     password = StringField('Password', validators=[DataRequired()])
     submit = SubmitField('Register user')

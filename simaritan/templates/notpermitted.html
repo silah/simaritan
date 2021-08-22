@@ -14,27 +14,19 @@
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    {% block header_extra %} {% endblock %}
-
-  </head>
-
-
-<link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
-  <body>
-<form class="form-signin" action="" method="post">
-    {{ form.hidden_tag() }}
-      <img class="mb-4" src="{{ url_for('static', filename='images/simaritan.png') }}" alt="" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        {{ form.username.label(class="sr-only") }}
-        {{ form.username(class="form-control") }}
-
-        {{ form.password.label(class="sr-only") }}
-        {{ form.password(class="form-control") }}
-
-    <div class="checkbox mb-3">
-        {{ form.remember_me() }} {{ form.remember_me.label() }}
-        </div>
-    {{ form.submit }}
-</form>
-  </body>
+<body>
+				<div class="jumbotron">
+					<h3>
+						The operation you attempted, is not permitted
+					</h3>
+                    <p>
+                        {% if current_user.is_authenticated %}
+                            Your role of {{ current_user.role }} does not grant
+                        {% else %}
+                            You need to login to have
+                        {% endif %}
+                        authorization to perform this operation
+                    </p>
+				</div>
+</body>
 </html>
