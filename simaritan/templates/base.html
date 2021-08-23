@@ -21,28 +21,29 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-                <header>
-                    <div class="jumbotron">
-                        <h4 class="mb-3">Incident: {% if inc %}{{inc.incident_no}}{% else %} None defined{%endif%}</h4>
-                        <hr />
-                        <!-- If the viewer is an authenticated user, show the options -->
-                        {% if current_user.is_authenticated %}
-                            {% if current_user.role == "Incident Manager" %}
-                            <a class="btn btn-primary" href="{{ url_for('overview') }}" role="button">Overview</a>
-                            <a class="btn btn-primary" href="{{ url_for('userManagement') }}" role="button">User Management</a>
+                    <div class="card">
+                        <h5 class="card-header">Simaritan Major Incident Management tool -
+                            {% if inc %}
+                                Incident: {{ inc.incident_no }} -
                             {% endif %}
-                            <a class="btn btn-primary" href="{{ url_for('logout') }}" role="button">Log out</a>
-                        {% endif %}
-                        {% if inc %}
-                        <a class="btn btn-primary" href="{{ url_for('submitimpact', incident=inc.incident_no) }}" role="button">Submit impact</a>
-                        {% if current_user.is_authenticated %}
-                            {% if current_user.role == "Incident Manager" %}
-                        <a class="btn btn-primary" href="{{ url_for('closeinc', incident=inc.incident_no) }}" role="button">Close Incident</a>
-                            {% endif %}
-                        {% endif %}
-                        {% endif %}
+                             {% if current_user.is_authenticated %}
+                                    <a class="card-link" href="{{ url_for('overview') }}" role="button">Overview</a>
+                                    {% if current_user.role == "Incident Manager" %}
+                                        <a class="card-link" href="{{ url_for('userManagement') }}" role="button">User Management</a>
+                                        {% if inc %}
+                                            <a class="card-link" href="{{ url_for('closeinc', incident=inc.incident_no) }}" role="button">Close Incident</a>
+                                        {% endif %}
+                                    {% endif %}
+                                        <a class="card-link" href="{{ url_for('logout') }}" role="button">Log out</a>
+                                {% endif %}
+                                {% if inc %}
+                                    <a class="card-link" href="{{ url_for('submitimpact', incident=inc.incident_no) }}" role="button">Submit impact</a>
+                                {% endif %}
+                        </h5>
+                            <!--<div class="card-footer">
+                                <br />
+                            </div>-->
                     </div>
-                </header>
             </div>
 		</div>
   {% with messages = get_flashed_messages() %}

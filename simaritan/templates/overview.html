@@ -7,24 +7,11 @@
 				</div>
 			</div>
 		</div>
-			{% if current_user.role == 'Incident Manager' %}
-				<div class="row">
-					<div class="col-md-4">
-						{% include "components/users_incidents.html" %}
-					</div>
-					<div class="col-md-8">
-
-						{% include "forms/addIncident.html" %}
-
-					</div>
-				</div>
-			{% else %}
 				<div class="row">
 					<div class="col-md-12">
 						{% include "components/users_incidents.html" %}
 					</div>
 				</div>
-			{% endif %}
 			</div>
 		</div>
 	</div>
