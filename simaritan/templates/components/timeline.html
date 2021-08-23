@@ -1,5 +1,11 @@
 <h3 class="text-left text-muted">
 	Timeline of events
+		<!-- if admin param is set, display the button to add event -->
+		{% if admin %}
+		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addEventModal">
+			Add Timeline Event
+		</button>
+		{% endif %}
 </h3>
 <hr />
 <ul class="timeline"><!--Timeline is from https://bootsnipp.com/snippets/xrKXW-->
@@ -11,3 +17,6 @@
 		</li>
 	{% endfor %}
 </ul>
+{% if admin %}
+{% include "forms/addEventModal.html" %}
+{% endif %}

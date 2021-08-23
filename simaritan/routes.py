@@ -203,7 +203,7 @@ def admin(incident):
     else:
         return render_template('admin.html', title='Admin Section for {}'.format(inc.incident_no), taskf=taskform,
                                eventf=eventform, teamf=personform, tasks=tasks, impacts=impacts, inc=inc,
-                               team=team, timeline=timeline)
+                               team=team, timeline=timeline, admin=True)
 
 
 @app.route('/admin/close/<incident>')

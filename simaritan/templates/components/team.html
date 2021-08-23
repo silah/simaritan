@@ -1,8 +1,19 @@
 <div class="list-group">
-	<strong href="#" class="list-group-item list-group-item-action active">Incident Team</strong>
+	<strong href="#" class="list-group-item list-group-item-action active">
+		Incident Team
+			{% if admin %}
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">
+  			Add Team Member
+			</button>
+		{% endif %}
+	</strong>
+
 	{% for member in team %}
-	<div class="list-group-item justify-content-between">
-		{{ member.person }} <span class="">{{ member.role }}</span>
-	</div>
+		<div class="list-group-item justify-content-between">
+			{{ member.person }} <span class="">{{ member.role }}</span>
+		</div>
 	{% endfor %}
 </div>
+{% if admin %}
+	{% include "forms/addMemberModal.html" %}
+{% endif %}
