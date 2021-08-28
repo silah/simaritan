@@ -25,7 +25,10 @@
 			</th>
 			{% endif %}
 			<th>
-				Report
+				Event Report
+			</th>
+			<th>
+				Open Tasks
 			</th>
 		</tr>
     </thead>
@@ -47,7 +50,10 @@
 	    		</td>
 				{% endif %}
 	    		<td>
-					<a href="report/{{ inc.incident_no }}" target="blank">Event report (.csv)</a>
+					<a href="report/event/{{ inc.incident_no }}" target="blank">Event report (.csv)</a>
+	    		</td>
+				<td>
+					<a href="report/tasks/{{ inc.incident_no }}" target="blank">Export open tasks (.csv)</a>
 	    		</td>
 	    	</tr>
     	{% endfor %}
