@@ -58,6 +58,11 @@ def logout():
 @app.route('/usermanagement', methods=['GET', 'POST'])
 @login_required
 def userManagement():
+
+    # Prevent an authenticated user who is not an IM from accessing user management
+    if current_user.role != "Incident Manager":
+        return render_template('notpermitted.html')
+
     users = User.query.all()
     regf = UserReg()
     incidents = Incident.query.order_by(Incident.id.asc()).all()
@@ -151,6 +156,10 @@ def admin_blank():
 @app.route('/admin/<incident>', methods=['GET', 'POST'])
 @login_required
 def admin(incident):
+    # Prevent an authenticated user who is not an IM from editing an incident
+    if current_user.role != "Incident Manager":
+        return render_template('notpermitted.html')
+
     # Create the Form objects
     taskform = TaskAdditionForm()
     eventform = EventAdditionForm()
