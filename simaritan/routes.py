@@ -263,6 +263,18 @@ def submitimpact(incident):
     inc = Incident.query.filter_by(incident_no=incident).first()
     impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
 
+    # Get tasks for the header counter
+    tasks = Task.query.filter_by(incident_no=inc.incident_no).all()
+
+    # Tally up the tasks
+    total_tasks = 0
+    closed_tasks = 0
+
+    for tsk in tasks:
+        total_tasks += 1
+        if tsk.status == '1':
+            closed_tasks += 1
+
     if form.validate_on_submit():
         sttmnt = ImpactStatement(incident_no=inc.incident_no, body=form.statement.data, submitter=form.submitter.data)
         event = Event(body=form.statement.data, assignee=form.submitter.data, activity='Impact added',
@@ -276,10 +288,10 @@ def submitimpact(incident):
         ))
         impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
         return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
-                               impacts=impacts, inc=inc, impactf=form)
+                               impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
     else:
         return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
-                               impacts=impacts, inc=inc, impactf=form)
+                               impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
 
 
 @app.route('/report/event/<incident>')
@@ -413,10 +425,10 @@ def remove_thing(incno, type, typeid):
         db.session.commit()
 
         # Grab all the data related to the incident so it can be cleaned up
-        impact_list = ImpactStatement.query.filter_by(incident_no=incident).all()
-        task_list = Task.query.filter_by(incident_no=incident).all()
-        event_list = Event.query.filter_by(incident_no=incident).all()
-        team_list = IncMem.query.filter_by(incident_no=incident).all()
+        impact_list = ImpactStatement.query.filter_by(incident_no=inc.incident_no).all()
+        task_list = Task.query.filter_by(incident_no=inc.incident_no).all()
+        event_list = Event.query.filter_by(incident_no=inc.incident_no).all()
+        team_list = IncMem.query.filter_by(incident_no=inc.incident_no).all()
 
         # Delete all associated data
         for impact in impact_list:
