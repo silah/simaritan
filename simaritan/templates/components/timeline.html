@@ -13,7 +13,11 @@
 		<li>
 			<strong>{{ tl.activity }}</strong>
 			<p class="float-right">{{tl.timestamp.strftime('%X')}}</p>
-			<p>{{ tl.assignee }}: {{ tl.body }}</p>
+			<p>{{ tl.assignee }}: {{ tl.body }}
+				{% if current_user.role == 'Incident Manager' %}
+				<a href="/remove/{{ inc.incident_no }}/event/{{ tl.id }}">[X]</a>
+				{% endif %}
+			</p>
 		</li>
 	{% endfor %}
 </ul>

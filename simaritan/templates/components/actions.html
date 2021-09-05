@@ -36,6 +36,9 @@
 
 	    		<td>
 	    			{{ task.body }}
+					{% if current_user.role == 'Incident Manager' %}
+					<a href="/remove/{{ inc.incident_no }}/task/{{ task.id }}">[X]</a>
+					{% endif %}
 	    		</td>
 			{% if current_user.is_authenticated %}
 				<td>

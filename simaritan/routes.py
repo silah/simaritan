@@ -58,7 +58,6 @@ def logout():
 @app.route('/usermanagement', methods=['GET', 'POST'])
 @login_required
 def userManagement():
-
     # Prevent an authenticated user who is not an IM from accessing user management
     if current_user.role != "Incident Manager":
         return render_template('notpermitted.html')
@@ -123,7 +122,6 @@ def overview():
 
 @app.route('/dashboard/<incident>')
 def dashboard(incident):
-
     # Grab all the information about the incident, from the database
     inc = Incident.query.filter_by(incident_no=incident).first()
 
@@ -218,7 +216,6 @@ def admin(incident):
 @app.route('/admin/close/<incident>')
 @login_required
 def closeinc(incident):
-
     if incident is None:
         return render_template('notfound.html', incident=incident, title='Not found!')
 
@@ -332,3 +329,48 @@ def update(item):
         return redirect('/dashboard/{}'.format(incno))
     else:
         return redirect(url_for('overview'))
+
+
+@app.route('/remove/<incno>/<type>/<typeid>')
+@login_required
+def remove_thing(incno, type, typeid):
+    # Only incident managers can do this
+    if current_user.role != 'Incident Manager':
+        return render_template('notpermitted.html')
+
+    # Remove the item requested
+
+    if type == 'task':
+
+        t = Task.query.get(typeid)
+        db.session.delete(t)
+        db.session.commit()
+
+        return redirect('/admin/{}'.format(incno))
+
+    elif type == 'event':
+
+        e = Event.query.get(typeid)
+        db.session.delete(e)
+        db.session.commit()
+
+        return redirect('/admin/{}'.format(incno))
+
+    elif type == 'mem':
+
+        m = IncMem.query.get(typeid)
+        db.session.delete(m)
+        db.session.commit()
+
+        return redirect('/admin/{}'.format(incno))
+
+    elif type == 'impact':
+
+        i = ImpactStatement.query.get(typeid)
+        db.session.delete(i)
+        db.session.commit()
+
+        return redirect('/admin/{}'.format(incno))
+
+    else:
+        return render_template('notfound.html', incident=incno, title='Not found!')

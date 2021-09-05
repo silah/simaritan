@@ -15,6 +15,9 @@
 	{% for statement in impacts %}
 	<dd>
 		{{ statement.body }} - Submitted by {{statement.submitter }}
+		{% if current_user.role == 'Incident Manager' %}
+		<a href="/remove/{{ inc.incident_no }}/impact/{{ statement.id }}">[X]</a>
+		{% endif %}
 	</dd>
 	{% endfor %}
 </dl>
