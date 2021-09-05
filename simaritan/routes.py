@@ -285,6 +285,8 @@ def submitimpact(incident):
 @app.route('/report/event/<incident>')
 @login_required
 def report_event(incident):
+    # All authenticated users can do this
+
     # Get the timeline for the CSV file
     timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
     # Start with a blank string
@@ -303,6 +305,11 @@ def report_event(incident):
 @app.route('/report/tasks/<incident>')
 @login_required
 def report_task(incident):
+    # All authenticated users can do this
+    # Only incident managers can do this
+    if current_user.role != 'Incident Manager':
+        return render_template('notpermitted.html')
+
     # Get the tasks for the CSV file
     tasks = Task.query.filter_by(incident_no=incident).all()
     # Start with a blank string
@@ -324,6 +331,10 @@ def report_task(incident):
 @login_required
 def update(item):
     if item == 'deleteuser':
+        # Only incident managers can do this
+        if current_user.role != 'Incident Manager':
+            return render_template('notpermitted.html')
+
         # grab form data
         usrid = request.form.get("userid")
         # execute database action
@@ -394,6 +405,39 @@ def remove_thing(incno, type, typeid):
         db.session.commit()
 
         return redirect('/admin/{}'.format(incno))
+
+    elif type == 'inc':
+
+        inc = Incident.query.get(typeid)
+        db.session.delete(inc)
+        db.session.commit()
+
+        # Grab all the data related to the incident so it can be cleaned up
+        impact_list = ImpactStatement.query.filter_by(incident_no=incident).all()
+        task_list = Task.query.filter_by(incident_no=incident).all()
+        event_list = Event.query.filter_by(incident_no=incident).all()
+        team_list = IncMem.query.filter_by(incident_no=incident).all()
+
+        # Delete all associated data
+        for impact in impact_list:
+            db.session.delete(impact)
+
+        for tasks in task_list:
+            db.session.delete(tasks)
+
+        for events in event_list:
+            db.session.delete(events)
+
+        for members in team_list:
+            db.session.delete(members)
+
+        # Delete the incident itself
+        db.session.delete(inc)
+
+        # Commit to the database
+        db.session.commit()
+
+        return redirect(url_for('overview'))
 
     else:
         return render_template('notfound.html', incident=incno, title='Not found!')

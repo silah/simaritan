@@ -28,8 +28,13 @@
 				Event Report
 			</th>
 			<th>
-				Open Tasks
+				Open Task report
 			</th>
+			{% if current_user.role == 'Incident Manager' %}
+			<th>
+				Delete incident
+			</th>
+			{% endif %}
 		</tr>
     </thead>
     <tbody>
@@ -55,6 +60,11 @@
 				<td>
 					<a href="report/tasks/{{ inc.incident_no }}" target="blank">Export open tasks (.csv)</a>
 	    		</td>
+				{% if current_user.role == 'Incident Manager' %}
+				<td>
+					<a href="/remove/{{ inc.incident_no }}/inc/{{ inc.incident_no }}">[X]</a>
+				</td>
+				{% endif %}
 	    	</tr>
     	{% endfor %}
     </tbody>
