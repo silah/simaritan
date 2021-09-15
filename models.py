@@ -84,3 +84,16 @@ class IncMem(db.Model):
 
     def __repr__(self):
         return 'Person {}'.format(self.person)
+
+
+class system(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True)
+    category = db.Column(db.String(64), index=True)
+    identifier = db.Column(db.String(64), unique=True)
+
+
+class system_inc_rel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
+    sysid = db.Column(db.Integer, db.ForeignKey('system.id'))
