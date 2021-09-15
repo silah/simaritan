@@ -55,3 +55,10 @@ class UserReg(FlaskForm):
     team = StringField('Team/Group', validators=[DataRequired()])
     password = StringField('Password', validators=[DataRequired()])
     submit = SubmitField('Register user')
+
+
+class systemAdd(FlaskForm):
+    sys_name = StringField('System name', validators=[DataRequired()])
+    category = StringField('Category', validators=[DataRequired()])
+    identifier = StringField('Identifier')
+    submit = SubmitField('Add System')
