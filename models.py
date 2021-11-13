@@ -90,7 +90,10 @@ class system(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
     category = db.Column(db.String(64), index=True)
-    identifier = db.Column(db.String(64), unique=True)
+    owner = db.Column(db.String(64), index=True)
+    primary_contact = db.Column(db.String(64), index=True)
+    contact_number = db.Column(db.String(64), index=True)
+    contact_email = db.Column(db.String(64), index=True)
 
 
 class system_inc_rel(db.Model):
