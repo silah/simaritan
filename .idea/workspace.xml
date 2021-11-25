@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Building System model and starting SysManagement template">
+      <change afterPath="$PROJECT_DIR$/simaritan/static/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/static/js/datatables/datatables-simple-demo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/static/js/litepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/static/js/markdown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/static/js/toasts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/contentHeader.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/topBar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db.x" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/registerSystemForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/registerSystemForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/static/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/static/js/scripts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636824339359</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Building System model and starting SysManagement template">
+      <created>1637874132964</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637874132964</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

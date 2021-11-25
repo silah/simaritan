@@ -1,0 +1,260 @@
+<div class="container-xl px-4 mt-n10">
+                        <div class="row">
+                            <div class="col-xxl-4 col-xl-6 mb-4">
+                                <div class="card card-header-actions h-100">
+                                    <div class="card-header">
+                                        Recent Activity
+                                        <div class="dropdown no-caret">
+                                            <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="text-gray-500" data-feather="more-vertical"></i></button>
+                                            <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
+                                                <h6 class="dropdown-header">Filter Activity:</h6>
+                                                <a class="dropdown-item" href="#!"><span class="badge bg-green-soft text-green my-1">Commerce</span></a>
+                                                <a class="dropdown-item" href="#!"><span class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
+                                                <a class="dropdown-item" href="#!"><span class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
+                                                <a class="dropdown-item" href="#!"><span class="badge bg-purple-soft text-purple my-1">Users</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="timeline timeline-xs">
+                                            {% for tl in timeline %}
+                                            <!-- Timeline Item 1-->
+                                            <div class="timeline-item">
+                                                <div class="timeline-item-marker">
+                                                    <div class="timeline-item-marker-text">{{tl.timestamp.strftime('%X')}}</div>
+                                                    <div class="timeline-item-marker-indicator bg-green"></div>
+                                                </div>
+                                                <div class="timeline-item-content">
+                                                    {{ tl.activity }} - {{ tl.assignee }}: {{ tl.body }}
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-xl-6 mb-4">
+                                <div class="card card-header-actions h-100">
+                                    <div class="card-header">
+                                        Progress Tracker
+                                        <div class="dropdown no-caret">
+                                            <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="text-gray-500" data-feather="more-vertical"></i></button>
+                                            <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#!">
+                                                    <div class="dropdown-item-icon"><i class="text-gray-500" data-feather="list"></i></div>
+                                                    Manage Tasks
+                                                </a>
+                                                <a class="dropdown-item" href="#!">
+                                                    <div class="dropdown-item-icon"><i class="text-gray-500" data-feather="plus-circle"></i></div>
+                                                    Add New Task
+                                                </a>
+                                                <a class="dropdown-item" href="#!">
+                                                    <div class="dropdown-item-icon"><i class="text-gray-500" data-feather="minus-circle"></i></div>
+                                                    Delete Tasks
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        {% for task in tasks %}
+                                        <h4 class="small">
+                                            {{ task.body }}
+                                            <span class="float-end fw-bold">{{ task.assignee }}</span>
+                                        </h4>
+                                        {% if task.status == '1' %}
+                                        <div class="progress mb-4"><div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>
+                                        {% else %}
+                                        <div class="progress mb-4"><div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="card-footer position-relative">
+                                        <!-- <div class="d-flex align-items-center justify-content-between small text-body">
+                                            <a class="stretched-link text-body" href="#!">Visit Task Center</a>
+                                            <i class="fas fa-angle-right"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-xl-6 mb-4">
+                                <div class="card mb-4">
+                                    <div class="card-header border-bottom">
+                                        <!-- Dashboard card navigation-->
+                                        <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
+                                            <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Overview</a></li>
+                                            <li class="nav-item"><a class="nav-link" id="impact-pill" href="#impact" data-bs-toggle="tab" role="tab" aria-controls="impact" aria-selected="false">Impact</a></li>
+                                            <li class="nav-item"><a class="nav-link" id="team-pill" href="#team" data-bs-toggle="tab" role="tab" aria-controls="team" aria-selected="false">Team</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="tab-content" id="dashboardNavContent">
+                                            <!-- Dashboard Tab Pane 1-->
+                                            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-pill">
+                                                <h3>Header title</h3>
+                                                <p>This is just a paragraph</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="impact" role="tabpanel" aria-labelledby="impact-pill">
+                                                <div class="card card-header-actions mx-auto">
+                                                    <div class="card-header">
+                                                        Header Icons
+                                                        <div>
+                                                            <button class="btn btn-blue btn-icon">
+                                                                <i data-feather="share"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        ...
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 2-->
+                                            <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-pill">
+                                                <table id="datatablesSimple">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Event</th>
+                                                            <th>Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Event</th>
+                                                            <th>Time</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>01/13/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-green" data-feather="zap"></i>
+                                                                Server online
+                                                            </td>
+                                                            <td>1:21 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/13/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-red" data-feather="zap-off"></i>
+                                                                Server restarted
+                                                            </td>
+                                                            <td>1:00 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/12/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
+                                                                New order placed! Order #
+                                                                <a href="#!">1126550</a>
+                                                            </td>
+                                                            <td>5:45 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/12/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-blue" data-feather="user"></i>
+                                                                Valerie Luna submitted
+                                                                <a href="#!">quarter four report</a>
+                                                            </td>
+                                                            <td>4:23 PM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/12/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-yellow" data-feather="database"></i>
+                                                                Database backup created
+                                                            </td>
+                                                            <td>3:51 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/12/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
+                                                                New order placed! Order #
+                                                                <a href="#!">1126549</a>
+                                                            </td>
+                                                            <td>1:22 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/11/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-blue" data-feather="user-plus"></i>
+                                                                New user created:
+                                                                <a href="#!">Sam Malone</a>
+                                                            </td>
+                                                            <td>4:18 PM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/11/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
+                                                                New order placed! Order #
+                                                                <a href="#!">1126548</a>
+                                                            </td>
+                                                            <td>4:02 PM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/11/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
+                                                                New order placed! Order #
+                                                                <a href="#!">1126547</a>
+                                                            </td>
+                                                            <td>3:47 PM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/11/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-green" data-feather="zap"></i>
+                                                                Server online
+                                                            </td>
+                                                            <td>1:19 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/11/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-red" data-feather="zap-off"></i>
+                                                                Server restarted
+                                                            </td>
+                                                            <td>1:00 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/10/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
+                                                                New order placed! Order #
+                                                                <a href="#!">1126547</a>
+                                                            </td>
+                                                            <td>5:31 PM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/10/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
+                                                                New order placed! Order #
+                                                                <a href="#!">1126546</a>
+                                                            </td>
+                                                            <td>12:13 PM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>01/10/20</td>
+                                                            <td>
+                                                                <i class="me-2 text-blue" data-feather="user"></i>
+                                                                Diane Chambers submitted
+                                                                <a href="#!">quarter four report</a>
+                                                            </td>
+                                                            <td>10:56 AM</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

@@ -197,7 +197,6 @@ def admin(incident):
         if tsk.status == '1':
             closed_tasks += 1
 
-
     if taskform.validate_on_submit():
         task = Task(incident_no=inc.incident_no, body=taskform.task.data, assignee=taskform.owner.data,
                     eta=taskform.eta.data, status=taskform.already_done.data)
@@ -233,7 +232,7 @@ def admin(incident):
     else:
         return render_template('admin.html', title='Admin Section for {}'.format(inc.incident_no), taskf=taskform,
                                eventf=eventform, teamf=personform, tasks=tasks, impacts=impacts, inc=inc,
-                               team=team, timeline=timeline, admin=True, total_tasks=total_tasks, ctasks= closed_tasks)
+                               team=team, timeline=timeline, admin=True, total_tasks=total_tasks, ctasks=closed_tasks)
 
 
 @app.route('/admin/close/<incident>')
@@ -454,8 +453,40 @@ def remove_thing(incno, type, typeid):
     else:
         return render_template('notfound.html', incident=incno, title='Not found!')
 
+
 @app.route('/systems')
 def systems(system):
-
     sysf = systemAdd()
     return "hello"
+
+
+@app.route('/dashboard_new/<incident>')
+def dashboard2(incident):
+    # Grab all the information about the incident, from the database
+    inc = Incident.query.filter_by(incident_no=incident).first()
+
+    # If there is no incident of the number accessed, send to error page
+    if inc is None:
+        return render_template('notfound.html', incident=incident, title='Not found!')
+
+    # Grab all the details required for the dashboard from the database
+
+    impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
+    tasks = Task.query.filter_by(incident_no=incident).all()
+    # Filter the timeline by the timestamp, in descending order to get the latest times on top
+    timeline = Event.query.filter_by(incident_no=incident).order_by(Event.timestamp.desc()).all()
+    team = IncMem.query.filter_by(incident_no=incident).all()
+
+    # Tally up the tasks
+    total_tasks = 0
+    closed_tasks = 0
+
+    for tsk in tasks:
+        total_tasks += 1
+        if tsk.status == '1':
+            closed_tasks += 1
+
+    # render dashboard
+    return render_template('pages/base.html', title='Incident Dashboard for {}'.format(inc.incident_no),
+                           tasks=tasks, team=team, timeline=timeline, impacts=impacts, inc=inc,
+                           total_tasks=total_tasks, ctasks=closed_tasks)
