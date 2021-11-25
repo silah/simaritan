@@ -5,8 +5,8 @@ from werkzeug.urls import url_parse
 from simaritan import app, db
 from flask import render_template, flash, redirect, url_for, request, make_response
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
-    IncidentStart, UserReg
-from models import Incident, IncMem, ImpactStatement, Task, Event, User
+    IncidentStart, UserReg, systemAdd
+from models import Incident, IncMem, ImpactStatement, Task, Event, User, system
 from sqlalchemy.exc import IntegrityError
 
 
@@ -453,3 +453,9 @@ def remove_thing(incno, type, typeid):
 
     else:
         return render_template('notfound.html', incident=incno, title='Not found!')
+
+@app.route('/systems')
+def systems(system):
+
+    sysf = systemAdd()
+    return "hello"

@@ -58,7 +58,10 @@ class UserReg(FlaskForm):
 
 
 class systemAdd(FlaskForm):
-    sys_name = StringField('System name', validators=[DataRequired()])
+    name = StringField('System name', validators=[DataRequired()])
     category = StringField('Category', validators=[DataRequired()])
-    identifier = StringField('Identifier')
+    owner = StringField('Identifier', validators=[DataRequired()])
+    primary_contact = StringField('Identifier', validators=[DataRequired()])
+    contact_number = StringField('Identifier')
+    contact_email = StringField('Identifier', validators=[DataRequired()])
     submit = SubmitField('Add System')
