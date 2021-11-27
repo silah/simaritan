@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Building System model and starting SysManagement template">
-      <change afterPath="$PROJECT_DIR$/simaritan/static/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/static/js/datatables/datatables-simple-demo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/static/js/litepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/static/js/markdown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/static/js/toasts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/contentHeader.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/topBar.html" afterDir="false" />
+    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Started new layout. Rudimentary dshboard works">
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/userManagement.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/static/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/static/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/components/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/components/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addIncidentModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addIncidentModal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/registerUserForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/registerUserForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637874132964</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Started new layout. Rudimentary dshboard works">
+      <created>1637878688958</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637878688958</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -95,6 +97,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Building System model and starting SysManagement template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Building System model and starting SysManagement template" />
+    <MESSAGE value="Started new layout. Rudimentary dshboard works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started new layout. Rudimentary dshboard works" />
   </component>
 </project>

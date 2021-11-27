@@ -1,0 +1,79 @@
+{% extends "pages/base.html" %}
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+                        <div class="container-fluid px-4">
+                            <div class="page-header-content">
+                                <div class="row align-items-center justify-content-between pt-3">
+                                    <div class="col-auto mb-3">
+                                        <h1 class="page-header-title">
+                                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                                            Users List
+                                        </h1>
+                                    </div>
+                                    <div class="col-12 col-xl-auto mb-3">
+                                        <a class="btn btn-sm btn-light text-primary" href="user-management-groups-list.html">
+                                            <i class="me-1" data-feather="users"></i>
+                                            Manage Groups
+                                        </a>
+                                        <button class="btn btn-sm btn-light text-primary" type="button" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                                            <i class="me-1" data-feather="plus"></i>
+                                            Create user
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Main page content-->
+                    <div class="container-fluid px-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Username</th>
+                                            <th>Role</th>
+                                            <th>Team</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Username</th>
+                                            <th>Role</th>
+                                            <th>Team</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    {{ user.name }}
+                                                </div>
+                                            </td>
+                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.role }}</td>
+                                            <td>
+                                                <span class="badge bg-green-soft text-green">{{ user.team }}</span>
+                                                <!--<span class="badge bg-blue-soft text-blue">Developers</span>
+                                                <span class="badge bg-red-soft text-red">Marketing</span>
+                                                <span class="badge bg-purple-soft text-purple">Managers</span>
+                                                <span class="badge bg-yellow-soft text-yellow">Customer</span> -->
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#"><i data-feather="trash-2"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}
+{% include "forms/registerUserForm.html" %}

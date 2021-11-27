@@ -21,8 +21,7 @@
 
     <div id="layoutSidenav_content">
         <main>
-        {% include "pages/contentHeader.html" %}
-    {% include "pages/dashboardContent.html" %}
+            {% block main %}{% endblock %}
         </main>
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">

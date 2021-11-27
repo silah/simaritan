@@ -88,7 +88,7 @@ def userManagement():
 
         return redirect(url_for('userManagement'))
 
-    return render_template('userManagement.html', users=users, regf=regf, incs=incidents, title='User Management')
+    return render_template('pages/userManagement.html', users=users, regf=regf, incs=incidents, title='User Management')
 
 
 @app.route('/overview', methods=['GET', 'POST'])
@@ -454,10 +454,32 @@ def remove_thing(incno, type, typeid):
         return render_template('notfound.html', incident=incno, title='Not found!')
 
 
-@app.route('/systems')
-def systems(system):
-    sysf = systemAdd()
-    return "hello"
+@app.route('/overview_test', methods=['GET', 'POST'])
+def overview_test():
+    # Create an Instatiation form object
+    incf = IncidentStart()
+    # Get the incidents for the logged in user, so they can be displayed
+    users_incidents = Incident.query.order_by(Incident.id.asc()).all()
+
+    # If the incident form is submitted
+    if incf.validate_on_submit():
+        # Create an incident
+        incident = Incident(incident_no=incf.inc_no.data, description=incf.description.data,
+                            status='open', inc_mgr=current_user.id)
+        # Create a timeline event for the incident, denominating the start
+        event = Event(body='Incident Opened: {}'.format(incf.inc_no.data), assignee=current_user.username,
+                      activity='Incident Started', incident_no=incf.inc_no.data)
+        # Set the incident manager
+        incmem = IncMem(incident_no=incf.inc_no.data, person=incf.inc_mgr.data, role='Incident Manager')
+        # Write to database
+        db.session.add(incident)
+        db.session.add(event)
+        db.session.add(incmem)
+        db.session.commit()
+        # Go to admin for the incident
+        return redirect('/admin/{}'.format(incf.inc_no.data))
+
+    return render_template('pages/incidentOverview.html', incf=incf, incs=users_incidents, title='Managers overview')
 
 
 @app.route('/dashboard_new/<incident>')
@@ -487,6 +509,6 @@ def dashboard2(incident):
             closed_tasks += 1
 
     # render dashboard
-    return render_template('pages/base.html', title='Incident Dashboard for {}'.format(inc.incident_no),
+    return render_template('pages/dashboardContent.html', title='Incident Dashboard for {}'.format(inc.incident_no),
                            tasks=tasks, team=team, timeline=timeline, impacts=impacts, inc=inc,
                            total_tasks=total_tasks, ctasks=closed_tasks)
