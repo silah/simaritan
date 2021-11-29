@@ -32,8 +32,10 @@
                                         <div class="dropdown no-caret">
                                             <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="text-gray-500" data-feather="more-vertical"></i></button>
                                             <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
-                                                <h6 class="dropdown-header">Filter Activity:</h6>
-                                                <a class="dropdown-item" href="#!"><span class="badge bg-green-soft text-green my-1">Commerce</span></a>
+                                                <h6 class="dropdown-header">Select Option:</h6>
+                                                {% if admin %}
+                                                <a class="dropdown-item" data-bs-target="#addEventModal" data-bs-toggle="modal" href="#addEventModal"><span class="badge bg-green-soft text-green my-1">+ Add Event</span></a>
+                                                {% endif %}
                                                 <a class="dropdown-item" href="#!"><span class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
                                                 <a class="dropdown-item" href="#!"><span class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
                                                 <a class="dropdown-item" href="#!"><span class="badge bg-purple-soft text-purple my-1">Users</span></a>
@@ -120,19 +122,20 @@
                                                 {% include "components/incdetails.html" %}
                                             </div>
                                             <div class="tab-pane fade" id="impact" role="tabpanel" aria-labelledby="impact-pill">
-                                                <div class="card card-header-actions mx-auto">
-                                                    <div class="card-header">
-                                                        Header Icons
-                                                        <div>
-                                                            <button class="btn btn-blue btn-icon">
-                                                                <i data-feather="share"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        ...
-                                                    </div>
-                                                </div>
+                                                {% include "forms/addImpact.html" %}
+<!--                                                <div class="card card-header-actions mx-auto">-->
+<!--                                                    <div class="card-header">-->
+<!--                                                        Header Icons-->
+<!--                                                        <div>-->
+<!--                                                            <button class="btn btn-blue btn-icon">-->
+<!--                                                                <i data-feather="share"></i>-->
+<!--                                                            </button>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="card-body">-->
+<!--                                                        ...-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
                                             </div>
                                             <!-- Dashboard Tab Pane 2-->
                                             <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-pill">
@@ -145,3 +148,4 @@
                         </div>
                     </div>
 {% endblock %}
+{% include "forms/addEventModal.html" %}

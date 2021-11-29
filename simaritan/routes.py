@@ -175,6 +175,7 @@ def admin(incident):
     taskform = TaskAdditionForm()
     eventform = EventAdditionForm()
     personform = PersonAdditionForm()
+    impactf = ImpactStatementForm()
 
     inc = Incident.query.filter_by(incident_no=incident).first()
 
@@ -230,9 +231,10 @@ def admin(incident):
         return redirect('/admin/{}'.format(incident))
 
     else:
-        return render_template('admin.html', title='Admin Section for {}'.format(inc.incident_no), taskf=taskform,
+        return render_template('pages/dashboardContent.html', title='Admin Section for {}'.format(inc.incident_no), taskf=taskform,
                                eventf=eventform, teamf=personform, tasks=tasks, impacts=impacts, inc=inc,
-                               team=team, timeline=timeline, admin=True, total_tasks=total_tasks, ctasks=closed_tasks)
+                               team=team, timeline=timeline, admin=True, total_tasks=total_tasks, ctasks=closed_tasks,
+                               impactf=impactf)
 
 
 @app.route('/admin/close/<incident>')
@@ -482,11 +484,14 @@ def overview_test():
     return render_template('pages/incidentOverview.html', incf=incf, incs=users_incidents, title='Managers overview')
 
 
-@app.route('/dashboard_new/<incident>')
-def dashboard2(incident):
+@app.route('/incadmin/<incident>')
+def incadmin(incident):
     # Grab all the information about the incident, from the database
     inc = Incident.query.filter_by(incident_no=incident).first()
-
+    taskform = TaskAdditionForm()
+    eventform = EventAdditionForm()
+    personform = PersonAdditionForm()
+    impactf = ImpactStatementForm()
     # If there is no incident of the number accessed, send to error page
     if inc is None:
         return render_template('notfound.html', incident=incident, title='Not found!')
@@ -511,4 +516,4 @@ def dashboard2(incident):
     # render dashboard
     return render_template('pages/dashboardContent.html', title='Incident Dashboard for {}'.format(inc.incident_no),
                            tasks=tasks, team=team, timeline=timeline, impacts=impacts, inc=inc,
-                           total_tasks=total_tasks, ctasks=closed_tasks)
+                           total_tasks=total_tasks, ctasks=closed_tasks, eventf=eventform, impactf=impactf)

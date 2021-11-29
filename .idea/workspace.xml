@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Started new layout. Rudimentary dshboard works">
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/userManagement.html" afterDir="false" />
+    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User overview and incident overview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/components/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/components/team.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addIncidentModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addIncidentModal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/registerUserForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/registerUserForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addEventModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addEventModal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637878688958</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="User overview and incident overview">
+      <created>1638039401637</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638039401637</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,6 +100,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Building System model and starting SysManagement template" />
     <MESSAGE value="Started new layout. Rudimentary dshboard works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started new layout. Rudimentary dshboard works" />
+    <MESSAGE value="User overview and incident overview" />
+    <option name="LAST_COMMIT_MESSAGE" value="User overview and incident overview" />
   </component>
 </project>
