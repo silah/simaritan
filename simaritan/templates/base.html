@@ -27,17 +27,17 @@
                                 Incident: {{ inc.incident_no }} -
                             {% endif %}
                              {% if current_user.is_authenticated %}
-                                    <a class="card-link" href="{{ url_for('overview') }}" role="button">Overview</a>
+                                    <a class="card-link" href="{{ url_for('admin.overview') }}" role="button">Overview</a>
                                     {% if current_user.role == "Incident Manager" %}
-                                        <a class="card-link" href="{{ url_for('userManagement') }}" role="button">User Management</a>
+                                        <a class="card-link" href="{{ url_for('auth.userManagement') }}" role="button">User Management</a>
                                         {% if inc %}
-                                            <a class="card-link" href="{{ url_for('closeinc', incident=inc.incident_no) }}" role="button">Close Incident</a>
+                                            <a class="card-link" href="{{ url_for('admin.closeinc', incident=inc.incident_no) }}" role="button">Close Incident</a>
                                         {% endif %}
                                     {% endif %}
-                                        <a class="card-link" href="{{ url_for('logout') }}" role="button">Log out</a>
+                                        <a class="card-link" href="{{ url_for('auth.logout') }}" role="button">Log out</a>
                                 {% endif %}
                                 {% if inc %}
-                                    <a class="card-link" href="{{ url_for('submitimpact', incident=inc.incident_no) }}" role="button">Submit impact</a>
+                                    <a class="card-link" href="{{ url_for('admin.submitimpact', incident=inc.incident_no) }}" role="button">Submit impact</a>
                                 {% endif %}
                         </h5>
                             <!--<div class="card-footer">

@@ -23,7 +23,7 @@ db = SQLAlchemy(app=app, metadata=MetaData(naming_convention=naming_convention))
 # db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 login = LoginManager(app)
-login.login_view = 'login'
+login.login_view = 'auth.login'
 
 from simaritan import routes
 import models

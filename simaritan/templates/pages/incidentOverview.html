@@ -49,7 +49,7 @@
                                             <td>{{ inc.description }}</td>
                                             <td>{{ inc.start_time }}</td>
                                             <td>
-                                                <button class="btn btn-datatable btn-icon btn-transparent-dark me-2" type="button" data-bs-toggle="modal" data-bs-target="#editGroupModal"><i data-feather="edit"></i></button>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark"  href="/admin/{{ inc.incident_no }}"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="/remove/{{ inc.incident_no }}/inc/{{ inc.incident_no }}"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>

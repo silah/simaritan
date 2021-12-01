@@ -2,13 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User overview and incident overview">
+      <change afterPath="$PROJECT_DIR$/simaritan/admin/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/auth/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/auth/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/dashboard/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/dashboard/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/modify/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/modify/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/report/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/report/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -87,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638212109206</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="User overview and incident overview">
+      <created>1638306548992</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1638306548992</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
