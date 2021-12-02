@@ -1,9 +1,9 @@
-<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addSystemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add System</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -12,13 +12,19 @@
 	    {{ sys_add.hidden_tag() }}
 		{{ sys_add.name.label() }}
 		{{ sys_add.name(class="form-control") }}
-		{{ sys_add.category.label() }}
-		{{ sys_add.category.(class="form-control") }}
-		{{ sys_add.identifier.label() }}
-		{{ sys_add.identifier(class="form-control") }}
+        {{ sys_add.category.label() }}
+        {{ sys_add.category(class="form-control") }}
+		{{ sys_add.owner.label() }}
+		{{ sys_add.owner(class="form-control") }}
+            {{ sys_add.primary_contact.label() }}
+		{{ sys_add.primary_contact(class="form-control") }}
+            {{ sys_add.contact_number.label() }}
+		{{ sys_add.contact_number(class="form-control") }}
+            {{ sys_add.contact_email.label() }}
+		{{ sys_add.contact_email(class="form-control") }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         {{ sys_add.submit(class="btn btn-primary") }}
           </form>
       </div>

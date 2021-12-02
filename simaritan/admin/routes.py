@@ -104,7 +104,7 @@ def closeinc(incident):
         db.session.add(event)
         db.session.commit()
 
-        return redirect(url_for('overview'))
+        return redirect(url_for('admin.overview'))
     else:
         return render_template('notpermitted.html')
 
@@ -139,11 +139,13 @@ def submitimpact(incident):
             form.statement.data, form.submitter.data
         ))
         impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
-        return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
-                               impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
+        return redirect('/admin/{}'.format(incident))
+        # return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
+        #                        impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
     else:
-        return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
-                               impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
+        return redirect('/admin/{}'.format(incident))
+        # return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
+        #                        impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
 
 
 @bp.route('/overview', methods=['GET', 'POST'])

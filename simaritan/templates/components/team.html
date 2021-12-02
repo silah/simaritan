@@ -1,6 +1,10 @@
 <div class="list-group">
 	<strong href="#" class="list-group-item list-group-item-action active">
 		Incident Team
+		{% if admin %}<a style="float: right;" data-feather="plus-circle" data-bs-target="#addMemberModal" data-bs-toggle="modal" href="#addMemberModal">
+			add member
+		</a>
+		{% endif %}
 	</strong>
 	{% for member in team %}
 	<div class="list-group-item justify-content-between">

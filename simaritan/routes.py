@@ -2,7 +2,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 from werkzeug.urls import url_parse
 
-from simaritan import app, db, dashboard, modify, admin, report, auth
+from simaritan import app, db, dashboard, modify, admin, report, auth, systems
 from flask import render_template, flash, redirect, url_for, request, make_response
 from simaritan.forms import LoginForm, TaskAdditionForm, EventAdditionForm, PersonAdditionForm, ImpactStatementForm, \
     IncidentStart, UserReg, systemAdd
@@ -128,6 +128,8 @@ app.register_blueprint(modify.bp)
 app.register_blueprint(admin.bp)
 
 app.register_blueprint(report.bp)
+
+app.register_blueprint(systems.bp)
 
 # @app.route('/dashboard/<incident>')
 # def dashboard(incident):

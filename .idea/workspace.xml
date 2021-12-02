@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User overview and incident overview">
-      <change afterPath="$PROJECT_DIR$/simaritan/admin/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/auth/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/dashboard/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/dashboard/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/modify/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/modify/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/report/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/report/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/systems/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/systems/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/systemsList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/admin/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/auth/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/components/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/components/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addImpact.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addImpact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addSystemModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addSystemModal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addTaskModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addTaskModal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638306548992</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="User overview and incident overview">
+      <created>1638375003303</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1638375003303</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -7,10 +7,10 @@
                 <div class="col-auto mt-4">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i data-feather="activity"></i></div>
-                        Incident title and number
+                        {{ inc.incident_no }}
                     </h1>
                     <div class="page-header-subtitle">
-                        Incident Breadcrumb description
+                        {{ inc.description }}
                     </div>
                 </div>
                 <div class="col-12 col-xl-auto mt-4">
@@ -69,14 +69,12 @@
                                         <div class="dropdown no-caret">
                                             <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="text-gray-500" data-feather="more-vertical"></i></button>
                                             <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#!">
-                                                    <div class="dropdown-item-icon"><i class="text-gray-500" data-feather="list"></i></div>
-                                                    Manage Tasks
-                                                </a>
-                                                <a class="dropdown-item" href="#!">
+                                                {% if admin %}
+                                                <a class="dropdown-item" data-bs-target="#addTaskModal" data-bs-toggle="modal" href="#addTaskModal">
                                                     <div class="dropdown-item-icon"><i class="text-gray-500" data-feather="plus-circle"></i></div>
                                                     Add New Task
                                                 </a>
+                                                {% endif %}
                                                 <a class="dropdown-item" href="#!">
                                                     <div class="dropdown-item-icon"><i class="text-gray-500" data-feather="minus-circle"></i></div>
                                                     Delete Tasks
@@ -85,17 +83,20 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
+                                        Total tasks: {{ total_tasks }} - Completed tasks: {{ ctasks }}
+                                        <hr />
                                         {% for task in tasks %}
                                         <h4 class="small">
                                             {{ task.body }}
-                                            <span class="float-end fw-bold">{{ task.assignee }}</span>
+                                            <span class="float-end fw-bold">{{ task.assignee }} - ETA: {{ task.eta }}</span>
                                         </h4>
                                         {% if task.status == '1' %}
-                                        <div class="progress mb-4"><div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>
-                                        {% else %}
                                         <div class="progress mb-4"><div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>
+                                        {% else %}
+                                        <div class="progress mb-4"><div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>
                                         {% endif %}
                                         {% endfor %}
+
                                     </div>
                                     <div class="card-footer position-relative">
                                         <!-- <div class="d-flex align-items-center justify-content-between small text-body">
@@ -126,6 +127,7 @@
                                             </div>
                                             <!-- Dashboard Tab Pane 2-->
                                             <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-pill">
+
                                                 {% include "components/team.html" %}
                                             </div>
                                         </div>
@@ -136,3 +138,5 @@
                     </div>
 {% endblock %}
 {% include "forms/addEventModal.html" %}
+{% include "forms/addTaskModal.html" %}
+{% include "forms/addMemberModal.html" %}

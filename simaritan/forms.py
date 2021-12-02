@@ -60,8 +60,8 @@ class UserReg(FlaskForm):
 class systemAdd(FlaskForm):
     name = StringField('System name', validators=[DataRequired()])
     category = StringField('Category', validators=[DataRequired()])
-    owner = StringField('Identifier', validators=[DataRequired()])
-    primary_contact = StringField('Identifier', validators=[DataRequired()])
-    contact_number = StringField('Identifier')
-    contact_email = StringField('Identifier', validators=[DataRequired()])
+    owner = StringField('Owner', validators=[DataRequired()])
+    primary_contact = StringField('Primary Contact', validators=[DataRequired()])
+    contact_number = StringField('Contact Number')
+    contact_email = StringField('Contact Email', validators=[DataRequired()])
     submit = SubmitField('Add System')

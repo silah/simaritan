@@ -79,6 +79,6 @@ def userManagement():
         # Update the user list so showing the new user
         users = User.query.all()
 
-        return redirect(url_for('userManagement'))
+        return redirect(url_for('auth.userManagement'))
 
     return render_template('pages/userManagement.html', users=users, regf=regf, incs=incidents, title='User Management')
