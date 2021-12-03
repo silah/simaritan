@@ -39,7 +39,7 @@ def login():
         # Redirect to the next page
         return redirect(next_page)
     else:
-        return render_template('login.html', title='Log in to Simaritan', form=form)
+        return render_template('pages/login.html', title='Log in to Simaritan', form=form)
 
 
 @bp.route('/logout')
@@ -82,3 +82,10 @@ def userManagement():
         return redirect(url_for('auth.userManagement'))
 
     return render_template('pages/userManagement.html', users=users, regf=regf, incs=incidents, title='User Management')
+
+
+@bp.route('/users/profile', methods=['GET', 'POST'])
+@login_required
+def userProfile():
+
+    return render_template('pages/userProfile.html')

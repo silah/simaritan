@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User overview and incident overview">
-      <change afterPath="$PROJECT_DIR$/simaritan/systems/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/systems/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/systemsList.html" afterDir="false" />
+    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Systems list and submission, missing Deletion and edit">
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/userProfile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/admin/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/auth/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/components/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/components/team.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addImpact.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addImpact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addSystemModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addSystemModal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/addTaskModal.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/addTaskModal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +37,11 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/simaritan/templates/forms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/simaritan/templates/pages" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/simaritan/templates/pages" />
       <recent name="$PROJECT_DIR$/simaritan/templates/forms" />
       <recent name="$PROJECT_DIR$/simaritan/templates" />
     </key>
@@ -120,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638375003303</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Systems list and submission, missing Deletion and edit">
+      <created>1638483895107</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1638483895107</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,6 +137,7 @@
     <MESSAGE value="Building System model and starting SysManagement template" />
     <MESSAGE value="Started new layout. Rudimentary dshboard works" />
     <MESSAGE value="User overview and incident overview" />
-    <option name="LAST_COMMIT_MESSAGE" value="User overview and incident overview" />
+    <MESSAGE value="Systems list and submission, missing Deletion and edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Systems list and submission, missing Deletion and edit" />
   </component>
 </project>
