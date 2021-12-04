@@ -57,16 +57,9 @@
                                             </td>
                                             <td>{{ user.username }}</td>
                                             <td>{{ user.role }}</td>
+                                            <td>{{ user.team }}</td>
                                             <td>
-                                                <span class="badge bg-green-soft text-green">{{ user.team }}</span>
-                                                <!--<span class="badge bg-blue-soft text-blue">Developers</span>
-                                                <span class="badge bg-red-soft text-red">Marketing</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                                <span class="badge bg-yellow-soft text-yellow">Customer</span> -->
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#"><i data-feather="trash-2"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ url_for('auth.userProfile', id=user.id) }}"><i data-feather="edit"></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}

@@ -31,8 +31,8 @@
                                             <th>Category</th>
                                             <th>Owner</th>
                                             <th>Primary Contact</th>
-                                            <th>Contact Email</th>
-                                            <th>Contact Number</th>
+                                            <th>Priority</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -41,8 +41,8 @@
                                             <th>Category</th>
                                             <th>Owner</th>
                                             <th>Primary Contact</th>
-                                            <th>Contact Email</th>
-                                            <th>Contact Number</th>
+                                            <th>Priority</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -56,8 +56,10 @@
                                             <td>{{ sys.category }}</td>
                                             <td>{{ sys.owner }}</td>
                                             <td>{{ sys.primary_contact }}</td>
-                                            <td>{{ sys.contact_email }}</td>
-                                            <td>{{ sys.contact_number }}</td>
+                                            <td>{{ sys.priority }}</td>
+                                            <td>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ url_for('systems.systemProfile', id=sys.id) }}"><i data-feather="edit"></i></a>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

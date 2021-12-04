@@ -94,6 +94,7 @@ class system(db.Model):
     primary_contact = db.Column(db.String(64), index=True)
     contact_number = db.Column(db.String(64), index=True)
     contact_email = db.Column(db.String(64), index=True)
+    priority = db.Column(db.String(16), index=True)
 
 
 class system_inc_rel(db.Model):

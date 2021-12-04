@@ -45,7 +45,19 @@ def login():
 @bp.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('auth.login'))
+
+@bp.route('/temp')
+def bonga():
+
+    user = User(username='first', name='first', email='first', role='Incident Manager', team='first')
+    user.set_password('test123')
+
+    db.session.add(user)
+
+    db.session.commit()
+
+    return 'Incident Management user with password: test123 created... you dumbass!!!'
 
 
 @bp.route('/usermanagement', methods=['GET', 'POST'])
@@ -84,8 +96,32 @@ def userManagement():
     return render_template('pages/userManagement.html', users=users, regf=regf, incs=incidents, title='User Management')
 
 
-@bp.route('/users/profile', methods=['GET', 'POST'])
+@bp.route('/users/profile/<id>', methods=['GET', 'POST'])
 @login_required
-def userProfile():
+def userProfile(id):
+    if current_user.role != "Incident Manager":
+        return render_template('notpermitted.html')
 
-    return render_template('pages/userProfile.html')
+    usr = User.query.get(id)
+    profileform = UserReg()
+
+    if profileform.validate_on_submit():
+
+        if profileform.role.data == 'Please select role':
+            return render_template('pages/userProfile.html', usr=usr, form=profileform, msg='Please select a role')
+
+        usr.name = profileform.full_name.data
+        usr.username = profileform.uname.data
+        usr.email = profileform.email.data
+        usr.role = profileform.role.data
+        usr.team = profileform.team.data
+
+        try:
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            return redirect(url_for('auth.userProfile', id=usr.id, msg='Validation error. Please check all fields'))
+
+        return redirect(url_for('auth.userManagement'))
+
+    return render_template('pages/userProfile.html', usr=usr, form=profileform)

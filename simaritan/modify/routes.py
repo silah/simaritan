@@ -2,7 +2,7 @@ from flask import render_template, url_for, request
 from flask_login import current_user, login_required
 from werkzeug.utils import redirect
 
-from models import Incident, ImpactStatement, Task, Event, IncMem, User
+from models import Incident, ImpactStatement, Task, Event, IncMem, User, system
 from simaritan import db
 from simaritan.modify import bp
 
@@ -22,7 +22,20 @@ def update(item):
         db.session.delete(usr)
         db.session.commit()
 
-        return redirect(url_for('userManagement'))
+        return redirect(url_for('auth.userManagement'))
+    elif item == 'deletesystem':
+        # Only incident managers can do this
+        if current_user.role != 'Incident Manager':
+            return render_template('notpermitted.html')
+
+        # grab form data
+        sysid = request.form.get("sysid")
+        # execute database action
+        sys = system.query.get(sysid)
+        db.session.delete(sys)
+        db.session.commit()
+
+        return redirect(url_for('systems.systems_list'))
     elif item == 'completetask':
         # grab form data
         taskid = request.form.get("taskid")
