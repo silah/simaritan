@@ -15,7 +15,8 @@ class LoginForm(FlaskForm):
 class TaskAdditionForm(FlaskForm):
     task = StringField('Task', validators=[DataRequired()])
     owner = StringField('Owner', validators=[DataRequired()])
-    eta = StringField('ETA (HH:MM)', validators=[DataRequired()])
+    eta = TimeField('ETA', validators=[DataRequired()])
+    #eta = StringField('ETA (HH:MM)', validators=[DataRequired()])
     already_done = BooleanField('Already completed')
     submit = SubmitField('Add Task')
 

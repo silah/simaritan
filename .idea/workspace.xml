@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User Profile page added and login page updated to new look">
-      <change afterPath="$PROJECT_DIR$/simaritan/templates/pages/systemProfile.html" afterDir="false" />
+    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User profile functionality implemented, systems updated to include priority and system profile page built.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/auth/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/modify/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/modify/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/systems/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/systems/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/forms/registerSystemForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/forms/registerSystemForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/sideBar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/systemsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/systemsList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/userManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/userManagement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/userProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/userProfile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638568463757</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="User profile functionality implemented, systems updated to include priority and system profile page built.">
+      <created>1638630151911</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1638630151911</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +159,7 @@
     <MESSAGE value="User overview and incident overview" />
     <MESSAGE value="Systems list and submission, missing Deletion and edit" />
     <MESSAGE value="User Profile page added and login page updated to new look" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Profile page added and login page updated to new look" />
+    <MESSAGE value="User profile functionality implemented, systems updated to include priority and system profile page built." />
+    <option name="LAST_COMMIT_MESSAGE" value="User profile functionality implemented, systems updated to include priority and system profile page built." />
   </component>
 </project>
