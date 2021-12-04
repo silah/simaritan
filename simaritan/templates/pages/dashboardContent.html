@@ -15,8 +15,8 @@
                 </div>
                 <div class="col-12 col-xl-auto mt-4">
                     <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                        <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
-                        <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
+                        <span class="input-group-text"><i class="text-primary" data-feather="clock"></i>
+                        Start time: {{ inc.start_time.strftime('%d-%m %H:%M') }}</span>
                     </div>
                 </div>
             </div>
@@ -31,15 +31,12 @@
                                         Recent Activity
                                         <div class="dropdown no-caret">
                                             <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="text-gray-500" data-feather="more-vertical"></i></button>
+                                           {% if admin %}
                                             <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
                                                 <h6 class="dropdown-header">Select Option:</h6>
-                                                {% if admin %}
                                                 <a class="dropdown-item" data-bs-target="#addEventModal" data-bs-toggle="modal" href="#addEventModal"><span class="badge bg-green-soft text-green my-1">+ Add Event</span></a>
-                                                {% endif %}
-                                                <a class="dropdown-item" href="#!"><span class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
-                                                <a class="dropdown-item" href="#!"><span class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
-                                                <a class="dropdown-item" href="#!"><span class="badge bg-purple-soft text-purple my-1">Users</span></a>
                                             </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="card-body">

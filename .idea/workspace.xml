@@ -3,7 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="User profile functionality implemented, systems updated to include priority and system profile page built.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/admin/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/auth/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/auth/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/dashboard/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/dashboard/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/dashboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/overview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/submitImpact.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/systemManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/userManagement.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638630151911</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="User profile functionality implemented, systems updated to include priority and system profile page built.">
+      <created>1638630741376</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1638630741376</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

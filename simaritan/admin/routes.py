@@ -108,7 +108,6 @@ def closeinc(incident):
     else:
         return render_template('notpermitted.html')
 
-
 @bp.route('/submitimpact/<incident>', methods=['GET', 'POST'])
 def submitimpact(incident):
     form = ImpactStatementForm()
@@ -140,12 +139,8 @@ def submitimpact(incident):
         ))
         impacts = ImpactStatement.query.filter_by(incident_no=incident).all()
         return redirect('/admin/{}'.format(incident))
-        # return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
-        #                        impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
     else:
         return redirect('/admin/{}'.format(incident))
-        # return render_template('submitImpact.html', title='Submit Impact Statement for {}'.format(inc.incident_no),
-        #                        impacts=impacts, inc=inc, impactf=form, total_tasks=total_tasks, ctasks=closed_tasks)
 
 
 @bp.route('/overview', methods=['GET', 'POST'])

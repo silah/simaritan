@@ -85,7 +85,7 @@ def userManagement():
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            return render_template('/userManagement.html', msg='Users e-mail is already registered',
+            return render_template('pages/userManagement.html', msg='Users e-mail is already registered',
                                    users=users, regf=regf, incs=incidents, title='User Management')
 
         # Update the user list so showing the new user

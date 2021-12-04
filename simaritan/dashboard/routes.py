@@ -35,6 +35,6 @@ def dashboard(incident):
             closed_tasks += 1
 
     # render dashboard
-    return render_template('dashboard.html', title='Incident Dashboard for {}'.format(inc.incident_no),
+    return render_template('pages/dashboardContent.html', title='Incident Dashboard for {}'.format(inc.incident_no),
                            tasks=tasks, team=team, timeline=timeline, impacts=impacts, inc=inc,
                            total_tasks=total_tasks, ctasks=closed_tasks)
