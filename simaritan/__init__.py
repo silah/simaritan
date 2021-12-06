@@ -5,6 +5,8 @@ from sqlalchemy import MetaData
 from flask_login import LoginManager
 
 from config import Config
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Naming conventions are added to get around SQLite database limitation around altering tables.
 # They are passed into the DB initialization

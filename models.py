@@ -12,7 +12,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), index=True, unique=True)
     role = db.Column(db.String(64), index=True)
     team = db.Column(db.String(64), index=True)
-    password_hash = db.Column(db.String(64))
+    password_hash = db.Column(db.String(256))
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
