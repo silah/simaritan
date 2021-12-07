@@ -1,0 +1,89 @@
+{% extends "pages/base.html" %}
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+                        <div class="container-xl px-4">
+                            <div class="page-header-content">
+                                <div class="row align-items-center justify-content-between pt-3">
+                                    <div class="col-auto mb-3">
+                                        <h1 class="page-header-title">
+                                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                                            Edit System - {{ sys.name }}
+                                        </h1>
+                                    </div>
+                                    <div class="col-12 col-xl-auto mb-3">
+                                        <a class="btn btn-sm btn-light text-primary" href="{{ url_for('auth.userManagement') }}">
+                                            <i class="me-1" data-feather="arrow-left"></i>
+                                            Back to Users List
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Main page content-->
+                    <div class="container-xl px-4 mt-4">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">System Details</div>
+                                    <div class="card-body">
+                                        <form class="form-signin" action="" method="post">
+                                            {{ form.hidden_tag() }}
+                                            <!-- Form Row-->
+                                            <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.name.label(class="small mb-1") }}
+                                                    {{ form.name(class="form-control", placeholder="Enter system name", value=sys.name) }}
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.category.label(class="small mb-1") }}
+                                                    {{ form.category(class="form-control", placeholder="Enter category", value=sys.category) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.owner.label(class="small mb-1") }}
+                                                    {{ form.owner(class="form-control", placeholder="Enter system owner", value=sys.owner) }}
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.primary_contact.label(class="small mb-1") }}
+                                                    {{ form.primary_contact(class="form-control", placeholder="Enter Primary Contact", value=sys.primary_contact) }}
+                                                </div>
+                                            </div>
+                                            <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.contact_number.label(class="small mb-1") }}
+                                                    {{ form.contact_number(class="form-control", placeholder="Enter Contact Number", value=sys.contact_number) }}
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.contact_email.label(class="small mb-1") }}
+                                                    {{ form.contact_email(class="form-control", placeholder="Enter Contact Email", value=sys.contact_email) }}
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (Roles)-->
+                                            <div class="mb-3">
+                                                {{ form.priority.label(class="small mb-1") }}
+                                                {{ form.priority(class="form-control", default=2) }}
+                                            </div>
+                                            <!-- Submit button-->
+                                            <button class="btn btn-primary" type="submit">Save changes</button>
+                                        </form>
+                                        {% if msg %}<p>{{ msg }}</p>{% endif %}
+                                        <form method="post" action="/update/deletesystem">
+										        <input type="hidden" value="{{ sys.id }}" name="sysid" />
+											    <a class="btn btn-datatable btn-icon btn-transparent-dark" onclick="this.parentNode.submit();">
+                                                <i data-feather="trash-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}

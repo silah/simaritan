@@ -1,23 +1,15 @@
 <div class="list-group">
 	<strong href="#" class="list-group-item list-group-item-action active">
 		Incident Team
-			{% if admin %}
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">
-  			Add Team Member
-			</button>
+		{% if admin %}<a style="float: right;" data-feather="plus-circle" data-bs-target="#addMemberModal" data-bs-toggle="modal" href="#addMemberModal">
+			add member
+		</a>
 		{% endif %}
 	</strong>
-
 	{% for member in team %}
-		<div class="list-group-item justify-content-between">
-			{{ member.person }}
-
-			<span class="">{{ member.role }} {% if current_user.role == 'Incident Manager' %}
-			<a href="/remove/{{ inc.incident_no }}/mem/{{ member.id }}">[X]</a>
-			{% endif %}</span>
-		</div>
+	<div class="list-group-item justify-content-between">
+		{{ member.person }}
+		<span class="float-end fw-bold">{{ member.role }}</span>
+	</div>
 	{% endfor %}
 </div>
-{% if admin %}
-	{% include "forms/addMemberModal.html" %}
-{% endif %}

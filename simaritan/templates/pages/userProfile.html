@@ -1,0 +1,77 @@
+{% extends "pages/base.html" %}
+{% block main %}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+                        <div class="container-xl px-4">
+                            <div class="page-header-content">
+                                <div class="row align-items-center justify-content-between pt-3">
+                                    <div class="col-auto mb-3">
+                                        <h1 class="page-header-title">
+                                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                                            Edit User - {{ usr.name }}
+                                        </h1>
+                                    </div>
+                                    <div class="col-12 col-xl-auto mb-3">
+                                        <a class="btn btn-sm btn-light text-primary" href="{{ url_for('auth.userManagement') }}">
+                                            <i class="me-1" data-feather="arrow-left"></i>
+                                            Back to Users List
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- Main page content-->
+                    <div class="container-xl px-4 mt-4">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">Account Details</div>
+                                    <div class="card-body">
+                                        <form class="form-signin" action="" method="post">
+                                            {{ form.hidden_tag() }}
+                                            <!-- Form Row-->
+                                            <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.full_name.label(class="small mb-1") }}
+                                                    {{ form.full_name(class="form-control", placeholder="Enter users name", value=usr.name) }}
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.uname.label(class="small mb-1") }}
+                                                    {{ form.uname(class="form-control", placeholder="Enter Username", value=usr.username) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.email.label(class="small mb-1") }}
+                                                    {{ form.email(class="form-control", placeholder="Enter users E-mail", value=usr.email) }}
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    {{ form.team.label(class="small mb-1") }}
+                                                    {{ form.team(class="form-control", placeholder="Enter users Team", value=usr.team) }}
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (Roles)-->
+                                            <div class="mb-3">
+                                                {{ form.role.label(class="small mb-1") }}
+                                                {{ form.role(class="form-control", default=2) }}
+                                            </div>
+                                            <!-- Submit button-->
+                                            <button class="btn btn-primary" type="submit">Save changes</button>
+                                        </form>
+                                        {% if msg %}<p>{{ msg }}</p>{% endif %}
+                                        <form method="post" action="/update/deleteuser">
+										        <input type="hidden" value="{{ usr.id }}" name="userid" />
+											    <a class="btn btn-datatable btn-icon btn-transparent-dark" onclick="this.parentNode.submit();">
+                                                <i data-feather="trash-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}

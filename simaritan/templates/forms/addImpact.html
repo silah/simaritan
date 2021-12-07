@@ -1,7 +1,24 @@
 <h4 class="text-left text-muted">
+Impact Statements
+</h4>
+<dl>
+	<dt>
+		Impact Statements
+	</dt>
+	{% for statement in impacts %}
+	<dd>
+		{{ statement.body }} - Submitted by {{statement.submitter }}
+		{% if current_user.role == 'Incident Manager' %}
+		<a href="/remove/{{ inc.incident_no }}/impact/{{ statement.id }}">[X]</a>
+		{% endif %}
+	</dd>
+	{% endfor %}
+</dl>
+<hr />
+<h4 class="text-left text-muted">
 Add Impact Statement
 </h4>
-<form class="form-signin" action="" method="post">
+<form class="form-signin" action="{{ url_for('admin.submitimpact', incident=inc.incident_no) }}" method="post">
 	    {{ impactf.hidden_tag() }}
 		{{ impactf.statement.label() }}
 		{{ impactf.statement(class="form-control") }}

@@ -12,7 +12,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), index=True, unique=True)
     role = db.Column(db.String(64), index=True)
     team = db.Column(db.String(64), index=True)
-    password_hash = db.Column(db.String(64))
+    password_hash = db.Column(db.String(256))
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -84,3 +84,20 @@ class IncMem(db.Model):
 
     def __repr__(self):
         return 'Person {}'.format(self.person)
+
+
+class system(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True)
+    category = db.Column(db.String(64), index=True)
+    owner = db.Column(db.String(64), index=True)
+    primary_contact = db.Column(db.String(64), index=True)
+    contact_number = db.Column(db.String(64), index=True)
+    contact_email = db.Column(db.String(64), index=True)
+    priority = db.Column(db.String(16), index=True)
+
+
+class system_inc_rel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
+    sysid = db.Column(db.Integer, db.ForeignKey('system.id'))

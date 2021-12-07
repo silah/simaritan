@@ -5,6 +5,8 @@ from sqlalchemy import MetaData
 from flask_login import LoginManager
 
 from config import Config
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Naming conventions are added to get around SQLite database limitation around altering tables.
 # They are passed into the DB initialization
@@ -23,7 +25,7 @@ db = SQLAlchemy(app=app, metadata=MetaData(naming_convention=naming_convention))
 # db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 login = LoginManager(app)
-login.login_view = 'login'
+login.login_view = 'auth.login'
 
 from simaritan import routes
 import models

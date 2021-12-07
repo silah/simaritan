@@ -15,7 +15,8 @@ class LoginForm(FlaskForm):
 class TaskAdditionForm(FlaskForm):
     task = StringField('Task', validators=[DataRequired()])
     owner = StringField('Owner', validators=[DataRequired()])
-    eta = StringField('ETA (HH:MM)', validators=[DataRequired()])
+    eta = TimeField('ETA', validators=[DataRequired()])
+    #eta = StringField('ETA (HH:MM)', validators=[DataRequired()])
     already_done = BooleanField('Already completed')
     submit = SubmitField('Add Task')
 
@@ -51,7 +52,18 @@ class UserReg(FlaskForm):
     uname = StringField('Username', validators=[DataRequired()])
     full_name = StringField('Full name', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired()])
-    role = SelectField('Role', choices=['Incident Manager', 'Stakeholder', 'Technical Teams '])
+    role = SelectField('Role', choices=['Please select role', 'Incident Manager', 'Stakeholder', 'Technical Teams'])
     team = StringField('Team/Group', validators=[DataRequired()])
-    password = StringField('Password', validators=[DataRequired()])
+    password = StringField('Password')
     submit = SubmitField('Register user')
+
+
+class systemAdd(FlaskForm):
+    name = StringField('System name', validators=[DataRequired()])
+    category = StringField('Category', validators=[DataRequired()])
+    owner = StringField('Owner', validators=[DataRequired()])
+    primary_contact = StringField('Primary Contact', validators=[DataRequired()])
+    contact_number = StringField('Contact Number')
+    contact_email = StringField('Contact Email', validators=[DataRequired()])
+    priority = SelectField('Priority', choices=['Critical', 'High', 'Medium', 'Low'])
+    submit = SubmitField('Add System')

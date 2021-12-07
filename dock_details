@@ -1,3 +1,11 @@
 docker build -t simaritan:dev .
 
-docker run --name simaritandev -d -p 8080:5000 simaritan:dev
+docker run --name simaritandev -d -p 8080:5000 simaritan/simaritan:dev
+
+
+docker build -t simaritan:dev .
+
+ docker tag simaritan:dev simaritan/simaritan:dev
+
+ docker push simaritan/simaritan:dev
+
