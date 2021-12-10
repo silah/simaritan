@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Cleaned up the old stuff">
+    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="added mysql blurb">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638655108917</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added mysql blurb">
+      <created>1638831078492</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1638831078492</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,6 +181,7 @@
     <MESSAGE value="User Profile page added and login page updated to new look" />
     <MESSAGE value="User profile functionality implemented, systems updated to include priority and system profile page built." />
     <MESSAGE value="Cleaned up the old stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up the old stuff" />
+    <MESSAGE value="added mysql blurb" />
+    <option name="LAST_COMMIT_MESSAGE" value="added mysql blurb" />
   </component>
 </project>
