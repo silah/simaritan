@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import render_template, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect
@@ -49,8 +51,9 @@ def admin(incident):
             closed_tasks += 1
 
     if taskform.validate_on_submit():
+
         task = Task(incident_no=inc.incident_no, body=taskform.task.data, assignee=taskform.owner.data,
-                    eta=taskform.eta.data, status=taskform.already_done.data)
+                    exp_eta=taskform.eta.data, status=taskform.already_done.data)
         event = Event(body=taskform.task.data, assignee=taskform.owner.data, activity='Task Added',
                       incident_no=inc.incident_no)
         db.session.add(task)
@@ -97,6 +100,7 @@ def closeinc(incident):
     if current_user.role == "Incident Manager":
         inc = Incident.query.filter_by(incident_no=incident).first()
         inc.status = 'closed'
+        inc.end_time = datetime.utcnow()
         event = Event(body='Incident {} has been closed by {}'.format(incident, current_user.username),
                       assignee=current_user.username, activity='Incident Closure',
                       incident_no=incident)

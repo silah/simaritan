@@ -37,6 +37,7 @@ class Incident(db.Model):
     status = db.Column(db.String(32))
     inc_mgr = db.Column(db.Integer, index=True)
     start_time = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    end_time = db.Column(db.DateTime)
     # DB relationship with tasks and events, backreference to incident number
     tasks = db.relationship('Task', backref='incidentno', lazy='dynamic')
     events = db.relationship('Event', backref='incidentno', lazy='dynamic')
@@ -59,7 +60,8 @@ class Task(db.Model):
     incident_no = db.Column(db.String(32), db.ForeignKey('incident.incident_no'), index=True)
     body = db.Column(db.String(512))
     assignee = db.Column(db.String(32), index=True)
-    eta = db.Column(db.String(32))
+    eta = db.Column(db.String(32), default='blank')
+    exp_eta = db.Column(db.Time)
     status = db.Column(db.String(32))
     # assignee = db.Column(db.String(32), index=True, ForeignKey='User.username')
 
