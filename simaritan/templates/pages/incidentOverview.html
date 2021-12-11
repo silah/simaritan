@@ -30,7 +30,7 @@
                                         <tr>
                                             <th>Incident Number</th>
                                             <th>Description</th>
-                                            <th>Date</th>
+                                            <th>Start Time</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -38,7 +38,7 @@
                                         <tr>
                                             <th>Incident Number</th>
                                             <th>Description</th>
-                                            <th>Date</th>
+                                            <th>Start Time</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
@@ -47,7 +47,7 @@
                                         <tr>
                                             <td>{{ inc.incident_no }}</td>
                                             <td>{{ inc.description }}</td>
-                                            <td>{{ inc.start_time }}</td>
+                                            <td>{{ inc.start_time.strftime('%d-%m %H:%M') }}</td>
                                             <td>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark"  href="/admin/{{ inc.incident_no }}"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="/remove/{{ inc.incident_no }}/inc/{{ inc.incident_no }}"><i data-feather="trash-2"></i></a>

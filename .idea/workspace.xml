@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="added mysql blurb">
+    <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Fixed task addition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/admin/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +28,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="recentNewPullRequestHead">
@@ -184,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639171637517</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed task addition">
+      <created>1639257310679</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1639257310679</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +224,7 @@
     <MESSAGE value="User profile functionality implemented, systems updated to include priority and system profile page built." />
     <MESSAGE value="Cleaned up the old stuff" />
     <MESSAGE value="added mysql blurb" />
-    <option name="LAST_COMMIT_MESSAGE" value="added mysql blurb" />
+    <MESSAGE value="Fixed task addition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed task addition" />
   </component>
 </project>

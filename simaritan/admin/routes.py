@@ -24,10 +24,11 @@ def admin(incident):
         return render_template('notpermitted.html')
 
     # Create the Form objects
-    taskform = TaskAdditionForm()
+
     eventform = EventAdditionForm()
     personform = PersonAdditionForm()
     impactf = ImpactStatementForm()
+    taskform = TaskAdditionForm()
 
     inc = Incident.query.filter_by(incident_no=incident).first()
 
