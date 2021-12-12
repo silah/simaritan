@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from werkzeug.utils import redirect
 
 from models import Incident, ImpactStatement, Task, Event, IncMem, User, system
-from simaritan import db
+from simaritan import db, admin
 from simaritan.modify import bp
 
 
@@ -53,9 +53,39 @@ def update(item):
 
         db.session.commit()
 
-        return redirect('/dashboard/{}'.format(incno))
+        return redirect('/admin/{}'.format(incno))
     else:
         return redirect(url_for('overview'))
+
+
+@bp.route('/close/<type>/<typeid>')
+@login_required
+def close_thing(type, typeid):
+    # Only incident managers can do this
+    if current_user.role != 'Incident Manager':
+        return render_template('notpermitted.html')
+
+    # Close the item requested
+
+    if type == 'task':
+
+        t = Task.query.get(typeid)
+
+        # Alter the task
+        tsk = Task.query.get(typeid)
+        tsk.status = '1'
+
+        # Create a timeline event for the action
+        event = Event(body='Task Completed: {}'.format(tsk.body), assignee=tsk.assignee, activity='Task Completed',
+                      incident_no=tsk.incident_no)
+        # Add and commit
+        db.session.add(event)
+
+        db.session.commit()
+
+        return redirect('/admin/{}'.format(tsk.incident_no))
+
+    return redirect(url_for(admin.overview))
 
 
 @bp.route('/remove/<incno>/<type>/<typeid>')

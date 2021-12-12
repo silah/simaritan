@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21d97dcf-bdec-492f-a8b9-cd7118b1ecf5" name="Changes" comment="Fixed task addition">
+      <change afterPath="$PROJECT_DIR$/simaritan/templates/forms/TaskMgtModal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/admin/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/admin/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/incidentOverview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/modify/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/modify/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/simaritan/templates/pages/dashboardContent.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639257310679</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fixed task addition">
+      <created>1639260279501</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1639260279501</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
