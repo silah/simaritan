@@ -49,8 +49,10 @@ def admin(incident):
             closed_tasks += 1
 
     if taskform.validate_on_submit():
+        eta_time = taskform.eta.data #Added in order to fix the issue with the date format
+        eta_str = eta_time.strftime('%H:%M:%S') #Added in order to fix the issue with the date format
         task = Task(incident_no=inc.incident_no, body=taskform.task.data, assignee=taskform.owner.data,
-                    eta=taskform.eta.data, status=taskform.already_done.data)
+                    eta=eta_str, status=taskform.already_done.data)
         event = Event(body=taskform.task.data, assignee=taskform.owner.data, activity='Task Added',
                       incident_no=inc.incident_no)
         db.session.add(task)
