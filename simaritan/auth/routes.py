@@ -1,7 +1,8 @@
 from flask import flash, url_for, request, render_template
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy.exc import IntegrityError
-from werkzeug.urls import url_parse
+#from werkzeug.urls import url_parse --removed as deprecated
+from urllib.parse import urlparse #added in place of werkzeug
 from werkzeug.utils import redirect
 
 from models import User, Incident
@@ -34,7 +35,8 @@ def login():
         # Fetch the page user was trying to go to, in case login challenge was presented
         next_page = request.args.get('next')
         # Check if there is a next page arg and check that arg is for same server with netloc
-        if not next_page or url_parse(next_page).netloc != '':
+        #if not next_page or url_parse(next_page).netloc != '': -- Obsolete werkzeug version
+        if not next_page or urlparse(next_page).netloc != '': # new v replaceing werkzeug
             next_page = url_for('admin.overview')
         # Redirect to the next page
         return redirect(next_page)
